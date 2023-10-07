@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const { getVideogames } = require('../handlers/getVideogames');
+const { getAllVideogames } = require('../handlers/getAllVideogames');
 
 
 const router = Router();
 
-router.get('/videogames', getVideogames);
+router.get('/videogames', getAllVideogames);
 
 
 module.exports = router;
