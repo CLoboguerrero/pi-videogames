@@ -20,7 +20,7 @@ const getVideogameByName = async (req, res) => {
             return {
                 id: game.id,
                 name: game.name,
-                background_image: game.background_image,
+                image: game.background_image,
                 released: game.released,
                 rating: game.rating,
                 genres: game.genres ? game.genres.map(genre => genre.name) : [],

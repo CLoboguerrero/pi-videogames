@@ -30,7 +30,7 @@ const postVideogame = async (req, res) => {
                     await newGame.addGenre(genre);
                     addedGenres.push(genre.name)
                 } else {
-                    console.error(`Invalid Genre ID`);
+                    console.error(`Invalid Genre Name!`);
                 }
             } catch (error) {
                 console.error(`Error adding Genre`, error);

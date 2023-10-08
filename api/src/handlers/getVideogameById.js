@@ -37,7 +37,7 @@ const getVideogameById = async (req, res) => {
             const gameInApi = {
                 id: game.id,
                 name: game.name,
-                background_image: game.background_image,
+                image: game.background_image,
                 description: game.description,
                 released: game.released,
                 rating: game.rating,
