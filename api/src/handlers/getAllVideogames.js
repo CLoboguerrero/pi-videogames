@@ -1,41 +1,41 @@
 const axios = require('axios');
-const { Videogame } = require('../db');
-const { API_KEY } = process.env
+const { Videogame, Genre } = require('../db');
+const { API_KEY } = process.env;
 
 const getAllVideogames = async (req, res) => {
+
     try {
+        const gamesInDb = await Videogame.findAll({
+
+            include: {
+                model: Genre,
+                attributes: ['name'],
+                through: {
+                    attributes: [],
+                }
+            }
+        });
+
         const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
 
-        const games = response.data.results.map((game) => {
-            const {
-                id,
-                name,
-                description,
-                background_image,
-                genres,
-                released,
-                rating,
-                platforms,
-            } = game;
-
-            const genreNames = genres.map((genre) => genre.name);
-            const platformNames = platforms.map((platform) => platform.platform.name);
-
+        const gamesInApi = response.data.results.map((game) => {
             return {
-                id,
-                name,
-                description,
-                background_image,
-                genres: genreNames,
-                released,
-                rating,
-                platforms: platformNames,
+                id: game.id,
+                name: game.name,
+                background_image: game.background_image,
+                //released: game.released,
+                //rating: game.rating,
+                genres: game.genres.map(genre => genre.name),
+                //platforms: game.platforms.map(platform => platform.platform.name),
             };
         });
         
-        return res.status(200).json(games);
+        const videogameResults = [...gamesInDb, ...gamesInApi];
+
+        return res.status(200).json(videogameResults);
     } catch (error) {
-        console.error('Error Fetching Data:', error)
+        console.error('Error Fetching Data:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
 
