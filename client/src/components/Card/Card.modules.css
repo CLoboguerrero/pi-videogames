@@ -1,0 +1,103 @@
+.card {
+    background-color: #04040473;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 15px;
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    box-shadow: 11px 13px 9px 0px #000000a8;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* animation: fadeIn 0.5s;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; */
+}
+
+/* .card.animate {
+    opacity: 1;
+    transform: translateX(0);
+  } */
+  
+.card:hover {
+    transform: scale(1.018);
+    transition-duration: .2s;
+}
+
+.characterName{
+    text-transform: uppercase;
+}
+
+.characterSpecs {
+    margin-top: 0px;
+    font-size: 21px;
+    font-weight: 100;
+    margin-bottom: 12px;
+}
+
+.img-card{
+    /* border: 10px solid #e3f9fb; */
+    box-shadow: 11px 20px 9px 0px #000000a8;
+    max-width: 250px;
+    max-height: 150px;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+#close {
+    background-color: none;
+    margin-left: 280px;
+}
+
+.bottom-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    
+}
+
+.card-details {
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: inherit;
+    border: 1px solid white;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: #14141452;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    user-select: none;
+}
+
+.card-details:hover {
+    background-color: #141414be;
+}
+
+.fav-btn {
+    font-size: 1.5em;
+    border: 1px solid white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: 10px;
+    background-color: #14141452;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    user-select: none;
+}
+
+.fav-btn:hover {
+    background-color: #141414be;
+    cursor: pointer;
+}

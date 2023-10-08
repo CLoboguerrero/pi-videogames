@@ -1,0 +1,33 @@
+.homepage {
+    margin-top: 60px;
+}
+
+.cards-container {
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.homepage h1 {
+    font-size: 5em;
+}
+
+.homepage.component-rendered h1 {
+    font-size: 3em;
+}
+
+.homepage p {
+    font-size: 2em;
+    animation: fadeIn 2.5s;
+}
+
+.homepage.component-rendered p {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
