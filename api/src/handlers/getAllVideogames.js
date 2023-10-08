@@ -16,7 +16,7 @@ const getAllVideogames = async (req, res) => {
             }
         });
 
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1&page_size=15`)
 
         const gamesInApi = response.data.results.map((game) => {
             return {
@@ -30,6 +30,12 @@ const getAllVideogames = async (req, res) => {
             };
         });
 
+        const totalGamesToFetch = 15;
+        const gamesInDbCount = gamesInDb.length;
+        const gamesToFetchFromApi = Math.max(0, totalGamesToFetch - gamesInDbCount);
+
+        const additionalApiGames = gamesInApi.slice(0, gamesToFetchFromApi);
+
         const gamesInDbModified = gamesInDb.map((game) => {
             return {
                 id: game.id,
@@ -39,7 +45,7 @@ const getAllVideogames = async (req, res) => {
             };
         });
         
-        const videogameResults = [...gamesInDbModified, ...gamesInApi];
+        const videogameResults = [...gamesInDbModified, ...additionalApiGames];
 
         return res.status(200).json(videogameResults);
     } catch (error) {

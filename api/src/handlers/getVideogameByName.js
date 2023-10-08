@@ -14,21 +14,30 @@ const getVideogameByName = async (req, res) => {
             }
         });
 
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`);
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page=1&page_size=15`);
 
         const gamesInApi = response.data.results.map((game) => {
             return {
                 id: game.id,
                 name: game.name,
                 image: game.background_image,
-                released: game.released,
-                rating: game.rating,
+                //released: game.released,
+                //rating: game.rating,
                 genres: game.genres ? game.genres.map(genre => genre.name) : [],
-                platforms: game.platforms ? game.platforms.map(platform => platform.platform.name) : [],
+                //platforms: game.platforms ? game.platforms.map(platform => platform.platform.name) : [],
             };
         });
 
-        const videogameResults = [...gamesInDb, ...gamesInApi];
+        const gamesInDbModified = gamesInDb.map((game) => {
+            return {
+                id: game.id,
+                name: game.name,
+                image: game.image,
+                genres: game.Genres.map(genre => genre.name),
+            };
+        });
+
+        const videogameResults = [...gamesInDbModified, ...gamesInApi];
         return res.status(200).json(videogameResults);
         
     } catch (error) {
