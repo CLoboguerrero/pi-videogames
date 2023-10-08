@@ -22,15 +22,24 @@ const getAllVideogames = async (req, res) => {
             return {
                 id: game.id,
                 name: game.name,
-                background_image: game.background_image,
+                image: game.background_image,
                 //released: game.released,
                 //rating: game.rating,
                 genres: game.genres.map(genre => genre.name),
                 //platforms: game.platforms.map(platform => platform.platform.name),
             };
         });
+
+        const gamesInDbModified = gamesInDb.map((game) => {
+            return {
+                id: game.id,
+                name: game.name,
+                image: game.image,
+                genres: game.Genres.map(genre => genre.name),
+            };
+        });
         
-        const videogameResults = [...gamesInDb, ...gamesInApi];
+        const videogameResults = [...gamesInDbModified, ...gamesInApi];
 
         return res.status(200).json(videogameResults);
     } catch (error) {
