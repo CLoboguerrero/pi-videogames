@@ -10,8 +10,10 @@ function Cards() {
     const displayGames = useSelector((state) => state.allGames);
 
     useEffect(() => {
-        dispatch(getAllGames());
-    }, [dispatch]);
+        if(displayGames-length === 0) {
+            dispatch(getAllGames());
+        }
+    }, []);
 
     return (
         <div>

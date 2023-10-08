@@ -15,7 +15,7 @@ function Detail () {
     useEffect(() => {
         console.log(gameData);
         dispatch(getGameDetails(id));
-    },[dispatch, id]);
+    },[]);
 
     const handleBack = () => {
         navigate(-1);

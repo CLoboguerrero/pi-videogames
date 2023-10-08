@@ -19,8 +19,8 @@ function Search () {
         if (name.trim() === ''){
             alert('Please enter game name before searching.');
         } else {
-            if (location.pathname !== '/'){
-                navigate('/');
+            if (location.pathname !== '/home'){
+                navigate('/home');
             }
             dispatch(getGame(name));
             setName('');
