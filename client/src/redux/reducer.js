@@ -1,7 +1,8 @@
-import { GET_ALL_GAMES } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS } from "./action-types";
 
 const initialState = {
     allGames: [],
+    gameDetails: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,19 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allGames: action.payload,
             }
+
+        case GET_GAME:
+            return{
+                ...state,
+                allGames: action.payload,
+            }
+
+        case GET_GAME_DETAILS:
+            return{
+                ...state,
+                gameDetails: action.payload,
+            }
+            
         default:
             return {...state}
     };
