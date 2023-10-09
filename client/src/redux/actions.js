@@ -3,10 +3,10 @@ import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
 
-export const getAllGames = () => {
+export const getAllGames = (page) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${endpoint}/videogames`);
+            const { data } = await axios.get(`${endpoint}/videogames?page=${page}`);
             console.log(data);
             return dispatch({
                 type: GET_ALL_GAMES,

@@ -7,24 +7,27 @@ import Card from '../Card/Card';
 
 function Cards() {
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setPage] = useState(1);
     const displayGames = useSelector((state) => state.allGames);
 
     useEffect(() => {
         if(displayGames.length === 0) {
-            dispatch(getAllGames(currentPage));
+           dispatch(getAllGames(page));
         }
-    }, []);
-
+    },[]);
+    
     const handleNextPage = () => {
-        setCurrentPage(currentPage + 1);
+        setPage(page + 1);
+        dispatch(getAllGames(page + 1));
     }
 
     const handlePrevPage = () => {
-        if (currentPage > 1){
-            setCurrentPage(currentPage - 1);
+        if (page > 1){
+            setPage(page - 1);
+            dispatch(getAllGames(page - 1));
         }
     }
+
 
     return (
         <div>
@@ -33,9 +36,9 @@ function Cards() {
             <h1>Videogames List:</h1>
 
             <div className='pagination'>
-                <button onClick={handlePrevPage}>Previous</button>
-                <span>Page {currentPage}</span>
-                <button onClick={handleNextPage}>Next</button>
+                <button onClick={handlePrevPage} disabled={page === 1}>Previous</button>
+                <span>Page {page}</span>
+                <button onClick={handleNextPage} >Next</button>
             </div>
 
             <div className='cards-container'>
