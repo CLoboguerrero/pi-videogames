@@ -3,8 +3,7 @@ const { Videogame, Genre } = require('../db');
 const { API_KEY } = process.env;
 
 const getAllVideogames = async (req, res) => {
-    const { page } = req.query;
-    const gamesPerPage = 15;
+    let allGames = [];
 
     try {
         const gamesInDb = await Videogame.findAll({
@@ -18,21 +17,6 @@ const getAllVideogames = async (req, res) => {
             }
         });
 
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}&page_size=${gamesPerPage}`)
-
-        const gamesInApi = response.data.results.map((game) => {
-            return {
-                id: game.id,
-                name: game.name,
-                image: game.background_image,
-                //released: game.released,
-                //rating: game.rating,
-                genres: game.genres.map(genre => genre.name),
-                //platforms: game.platforms.map(platform => platform.platform.name),
-            };
-        });
-
-
         const gamesInDbModified = gamesInDb.map((game) => {
             return {
                 id: game.id,
@@ -42,15 +26,22 @@ const getAllVideogames = async (req, res) => {
             };
         });
         
-        const allGames = [...gamesInDbModified, ...gamesInApi];
+        for (let i = 1; i <= 4; i++){
 
-        const startIndex = (page - 1) * gamesPerPage;
-        const endIndex = page * gamesPerPage;
-        const paginatedGames = allGames.slice(startIndex, endIndex);
-        // console.log('startIndex:', startIndex);
-        // console.log('endIndex:', endIndex);
-        // console.log('allGames:', allGames);
-        // console.log('paginatedGmes:', paginatedGames);
+            const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}&page_size=25`)
+    
+            const gamesInApi = response.data.results.map((game) => {
+                return {
+                    id: game.id,
+                    name: game.name,
+                    image: game.background_image,
+                    genres: game.genres.map(genre => genre.name),
+                };
+            });
+            allGames = [...allGames, ...gamesInApi];
+        }
+
+        allGames = [...gamesInDbModified, ...allGames]
 
         return res.status(200).json(allGames);
     } catch (error) {

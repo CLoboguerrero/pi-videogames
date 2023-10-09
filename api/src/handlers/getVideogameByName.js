@@ -5,6 +5,8 @@ const { API_KEY } = process.env;
 
 const getVideogameByName = async (req, res) => {
     const { name } = req.query;
+    let allGames = [];
+
     try {
         const gamesInDb = await Videogame.findAll({
             where: {
@@ -12,20 +14,6 @@ const getVideogameByName = async (req, res) => {
                     [Op.iLike]: `%${name}%`
                 }
             }
-        });
-
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`);
-
-        const gamesInApi = response.data.results.map((game) => {
-            return {
-                id: game.id,
-                name: game.name,
-                image: game.background_image,
-                //released: game.released,
-                //rating: game.rating,
-                genres: game.genres ? game.genres.map(genre => genre.name) : [],
-                //platforms: game.platforms ? game.platforms.map(platform => platform.platform.name) : [],
-            };
         });
 
         const gamesInDbModified = gamesInDb.map((game) => {
@@ -36,6 +24,19 @@ const getVideogameByName = async (req, res) => {
                 genres: game.Genres.map(genre => genre.name),
             };
         });
+        
+
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page_size=15`);
+
+        const gamesInApi = response.data.results.map((game) => {
+            return {
+                id: game.id,
+                name: game.name,
+                image: game.background_image,
+                genres: game.genres ? game.genres.map(genre => genre.name) : [],
+            };
+        });
+
 
         const videogameResults = [...gamesInDbModified, ...gamesInApi];
         
