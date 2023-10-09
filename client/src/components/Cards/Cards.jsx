@@ -33,13 +33,22 @@ function Cards() {
         <div>
             <br />
             <br />
-            <h1>Videogames List:</h1>
-
-            <div className='pagination'>
-                <button onClick={handlePrevPage} disabled={page === 1}>Previous</button>
-                <span>Page {page}</span>
-                <button onClick={handleNextPage} >Next</button>
-            </div>
+            {
+            displayGames.length > 15 
+            ?   <div className='pagination'>
+                    <h1>Videogames List:</h1>
+                    <button onClick={handlePrevPage} disabled={page === 1}>Previous</button>
+                    <span>Page {page}</span>
+                    <button onClick={handleNextPage} >Next</button>
+                </div>
+                
+            : displayGames.length == 15  
+            ?   <div className='search-results'> 
+                    <h1>Search Results:</h1>
+                </div>
+                
+            : null 
+            }
 
             <div className='cards-container'>
                 {displayGames.map((game) => (
