@@ -14,7 +14,7 @@ const getVideogameByName = async (req, res) => {
             }
         });
 
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page=1&page_size=15`);
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`);
 
         const gamesInApi = response.data.results.map((game) => {
             return {
@@ -38,8 +38,8 @@ const getVideogameByName = async (req, res) => {
         });
 
         const videogameResults = [...gamesInDbModified, ...gamesInApi];
-        return res.status(200).json(videogameResults);
         
+        return res.status(200).json(videogameResults);     
     } catch (error) {
         console.error('Error Fetching Data:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
