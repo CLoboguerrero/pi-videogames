@@ -6,7 +6,7 @@ function NavBar() {
     return(
         <nav className='nav-bar'>
             <div className='nav-links'>
-                <p>Home</p>
+                <p><Link to = '/home'>Home</Link></p>
                 <p>Place</p>
                 <p>Yes</p>
                 <p>What?</p>

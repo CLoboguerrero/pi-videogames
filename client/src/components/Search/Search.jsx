@@ -3,7 +3,7 @@ import { React } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { getGame } from '../../redux/actions';
+import { getGame, clearState } from '../../redux/actions';
 
 function Search () {
     const location = useLocation();
@@ -22,6 +22,7 @@ function Search () {
             if (location.pathname !== '/home'){
                 navigate('/home');
             }
+            dispatch(clearState());
             dispatch(getGame(name));
             setName('');
         };
