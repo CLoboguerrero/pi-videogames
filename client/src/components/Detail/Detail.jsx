@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGameDetails } from '../../redux/actions';
+import { getGameDetails, clearDetails } from '../../redux/actions';
 
 function Detail () {
     const { id } = useParams();
@@ -31,6 +31,7 @@ function Detail () {
 
     const handleBack = () => {
         navigate(-1);
+        dispatch(clearDetails());
     }
 
     return (

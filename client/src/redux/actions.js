@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, CLEAR_STATE } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, CLEAR_STATE, CLEAR_DETAILS } from "./action-types";
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -50,5 +50,12 @@ export const getGameDetails = (id) => {
 export const clearState = () => {
     return {
         type: CLEAR_STATE,
-    };
+    };   
 };
+
+export const clearDetails = () => {
+    return {
+        type: CLEAR_DETAILS,
+    };   
+};
+

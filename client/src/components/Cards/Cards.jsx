@@ -19,7 +19,7 @@ function Cards() {
     const gamesPaginated = displayGames.slice(startIndex, endIndex)
     
     let stateToShow = gamesPaginated;
-    
+
     if (displaySearchGames.length > 0) stateToShow = displaySearchGames;
     else stateToShow = gamesPaginated;
 
@@ -33,7 +33,6 @@ function Cards() {
     const handleGoBack = () => {
         dispatch(clearState());
         setCurrentPage(1);
-        dispatch(getAllGames());
     }
     
     const onPageChange = (newPage) => {
