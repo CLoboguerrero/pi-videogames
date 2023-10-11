@@ -22,7 +22,7 @@ function Search () {
             if (location.pathname !== '/home'){
                 navigate('/home');
             }
-            dispatch(clearState());
+            //dispatch(clearState());
             dispatch(getGame(name));
             setName('');
         };

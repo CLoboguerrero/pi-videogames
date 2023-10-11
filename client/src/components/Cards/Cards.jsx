@@ -4,11 +4,25 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames, clearState } from '../../redux/actions';
 import Card from '../Card/Card';
+import Pagination from '../Pagination/Pagination';
 
 function Cards() {
     const dispatch = useDispatch();
-    const [page, setPage] = useState(1);
     const displayGames = useSelector((state) => state.allGames);
+    const displaySearchGames = useSelector((state) => state.foundGames);
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
+    const totalPages = Math.ceil(displayGames.length / itemsPerPage)
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const gamesPaginated = displayGames.slice(startIndex, endIndex)
+    
+    let stateToShow = gamesPaginated;
+    
+    if (displaySearchGames.length > 0) stateToShow = displaySearchGames;
+    else stateToShow = gamesPaginated;
+
 
     useEffect(() => {
         if(displayGames.length === 0) {
@@ -18,19 +32,12 @@ function Cards() {
 
     const handleGoBack = () => {
         dispatch(clearState());
+        setCurrentPage(1);
         dispatch(getAllGames());
     }
     
-    const handleNextPage = () => {
-        setPage(page + 1);
-        dispatch(getAllGames(page + 1));
-    }
-
-    const handlePrevPage = () => {
-        if (page > 1){
-            setPage(page - 1);
-            dispatch(getAllGames(page - 1));
-        }
+    const onPageChange = (newPage) => {
+        setCurrentPage(newPage)
     }
 
 
@@ -39,25 +46,27 @@ function Cards() {
             <br />
             <br />
             {
-            displayGames.length > 15 
+            displayGames.length > 15 && displaySearchGames.length === 0
             ?   <div className='pagination'>
                     <h1>Videogames List:</h1>
-                    <button onClick={handlePrevPage} disabled={page === 1}>Previous</button>
-                    <span>Page {page}</span>
-                    <button onClick={handleNextPage} >Next</button>
+                    <Pagination 
+                        currentPage={currentPage} 
+                        totalPages={totalPages} 
+                        onPageChange={onPageChange} 
+                    />
                 </div>
                 
-            : displayGames.length >= 1 && displayGames.length <= 15  
+            : displaySearchGames.length > 0 && displaySearchGames.length <= 15
             ?   <div className='search-results'> 
                     <h1>Search Results:</h1>
                     <button onClick={handleGoBack}>Go Back to Games List</button>
                 </div>
                 
             : <h2>Loading Games...</h2>
-            }
+            }       
 
             <div className='cards-container'>
-                {displayGames.map((game) => (
+                {stateToShow.map((game) => (
                     <Card
                         key={game.id}
                         id={game.id}

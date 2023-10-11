@@ -2,6 +2,7 @@ import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, CLEAR_STATE } from "./action
 
 const initialState = {
     allGames: [],
+    foundGames: [],
     gameDetails: [],
 }
 
@@ -16,7 +17,7 @@ const reducer = (state = initialState, action) => {
         case GET_GAME:
             return{
                 ...state,
-                allGames: action.payload,
+                foundGames: action.payload,
             }
 
         case GET_GAME_DETAILS:
@@ -28,7 +29,7 @@ const reducer = (state = initialState, action) => {
         case CLEAR_STATE:
             return{
                 ...state,
-                allGames: [],
+                foundGames: [],
             }
             
         default:
