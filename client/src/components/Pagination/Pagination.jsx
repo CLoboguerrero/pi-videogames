@@ -10,20 +10,20 @@ function Pagination ({ currentPage, totalPages, onPageChange }) {
         <div className="pagination-buttons">
             <button
                 onClick={() => handlePageChange(1)}
-                disabled={currentPage === 1}>First</button>
+                disabled={currentPage === 1}>&lt;&lt;</button>
 
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}>Prev.</button>
+                disabled={currentPage === 1}>&lt;</button>
 
             <span>{`Page ${currentPage} of ${totalPages}`}</span>
 
             <button onClick={() => handlePageChange(currentPage + 1)}
-                disabled = {currentPage === totalPages}>Next</button>
+                disabled = {currentPage === totalPages}>&gt;</button>
 
             <button
                 onClick={() => handlePageChange(totalPages)}
-                disabled = {currentPage === totalPages}>Last</button>
+                disabled = {currentPage === totalPages}>&gt;&gt;</button>
         </div>
     )
 }
