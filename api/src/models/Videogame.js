@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     
-    name: {
+    gameName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
