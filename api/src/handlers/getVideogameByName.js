@@ -39,6 +39,10 @@ const getVideogameByName = async (req, res) => {
 
 
         const videogameResults = [...gamesInDbModified, ...gamesInApi];
+
+        if (videogameResults.length === 0) {
+            return res.status(404).json({ error: 'No games found with the specified name.' });
+        }
         
         return res.status(200).json(videogameResults);     
     } catch (error) {
