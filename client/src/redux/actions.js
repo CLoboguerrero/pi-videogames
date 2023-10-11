@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, CLEAR_STATE, CLEAR_DETAILS } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, CLEAR_STATE, CLEAR_DETAILS, POST_GAME } from "./action-types";
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -43,6 +43,16 @@ export const getGameDetails = (id) => {
                 payload: data
             })
         } catch (error){
+        };
+    };
+};
+
+export const postGame = (formData) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`${endpoint}/videogames`, formData);
+        } catch (error) {
+            console.log(error);
         };
     };
 };
