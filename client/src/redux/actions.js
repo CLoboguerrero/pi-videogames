@@ -28,7 +28,7 @@ export const getGame = (name) => {
                 payload: data,
             });
         } catch (error) {
-            console.log(error.message);
+            alert('No games found with the specified name!');
         };
     };
 };

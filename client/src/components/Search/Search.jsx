@@ -17,7 +17,7 @@ function Search () {
 
     const handleSearch = () => {
         if (name.trim() === ''){
-            alert('Please enter game name before searching.');
+            alert('Please enter a game name before searching.');
         } else {
             if (location.pathname !== '/home'){
                 navigate('/home');

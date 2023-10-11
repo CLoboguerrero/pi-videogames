@@ -12,10 +12,9 @@ function Cards() {
     const displaySearchGames = useSelector((state) => state.foundGames);
     
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 15;
-    const totalPages = Math.ceil(displayGames.length / itemsPerPage)
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
+    const totalPages = Math.ceil(displayGames.length / 15)
+    const startIndex = (currentPage - 1) * 15;
+    const endIndex = startIndex + 15;
     const gamesPaginated = displayGames.slice(startIndex, endIndex)
     
     let stateToShow = gamesPaginated;
