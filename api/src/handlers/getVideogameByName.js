@@ -5,12 +5,11 @@ const { API_KEY } = process.env;
 
 const getVideogameByName = async (req, res) => {
     const { name } = req.query;
-    let allGames = [];
 
     try {
         const gamesInDb = await Videogame.findAll({
             where: {
-                name: {
+                gameName: {
                     [Op.iLike]: `%${name}%`
                 }
             }
