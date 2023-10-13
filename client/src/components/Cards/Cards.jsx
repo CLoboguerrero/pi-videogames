@@ -47,7 +47,7 @@ function Cards() {
             <br />
             {
             displayGames.length > 15 && displaySearchGames.length === 0 
-            ?   <div className='pagination'>
+            ?   <div className='all-games'>
                     <h1>Videogames List:</h1>
                     <Pagination 
                         currentPage={currentPage} 
