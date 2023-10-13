@@ -1,7 +1,10 @@
 .card {
-    background-color: #160c18f0;
+    /* background-color: #160c18f0; */
     /* background-color: #080b19f2; */
     /* background-color: #240a2af0; */
+    /* background: linear-gradient(to bottom, #160c18f0 0%, #180f2af2 70%, #002a2a 100%);*/
+    /* background: linear-gradient(to bottom, #160c18f0 0%, #180f2af2 70%, #000909f2 100%); */
+    background: linear-gradient(to bottom, #000909f2 0%, #180f2af2 70%, #160c18f0 100%);
     padding-left: 35px;
     padding-right: 35px;
     padding-bottom: 15px;
@@ -9,7 +12,7 @@
     margin-left: 15px;
     margin-right: 15px;
     border-radius: 25px;
-    box-shadow: 11px 13px 9px 0px #000000a8;
+    box-shadow: 11px 13px 8px 0px #000000a8;
     width: 260px;
     display: flex;
     flex-direction: column;

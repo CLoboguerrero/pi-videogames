@@ -10,7 +10,7 @@ function Card ({ id, name, image, genres }) {
 
             <div className='bottom-buttons'>
                 <Link to={`/detail/${id}`} >
-                    <h3 className="card-details">Detailed Specs</h3>
+                    <h3 className="card-details">View Game Specs</h3>
                 </Link>
             </div>
         </div>

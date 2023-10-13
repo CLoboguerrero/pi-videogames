@@ -1,5 +1,5 @@
 import './Landing.modules.css'
-import BackgroundMain from '../Backgrounds/BackgroundMain';
+import BackgroundLanding from '../Backgrounds/BackgroundLanding';
 import { useNavigate } from 'react-router-dom';
 
 function Landing () {
@@ -11,7 +11,7 @@ function Landing () {
 
     return (
         <div className='landing-page'>
-            <BackgroundMain />
+            <BackgroundLanding />
             <button className='enter-button' onClick={() => handleClick()}>Enter Videogames App</button>
         </div>
     );

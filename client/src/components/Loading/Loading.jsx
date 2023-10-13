@@ -8,7 +8,7 @@ function Loading() {
         <video src= {backgroundVideo} className="background-video" autoPlay loop muted>
         </video>
         <div className="loading-content">
-          <h1>Loading</h1>
+          <h1>Loading...</h1>
         </div>
       </div>
     );
