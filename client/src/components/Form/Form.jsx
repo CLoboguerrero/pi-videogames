@@ -10,21 +10,21 @@ const createVideogame = () => {
     const [formData, setFormData] = useState({
         gameName: '',
         description: '',
-        platforms: '',
+        platforms: [],
         image:'',
         date:'',
         rating:'',
-        genres: ''
+        genres: []
     });
 
     const [errors, setErrors] = useState({
         gameName: '',
         description: '',
-        platforms: '',
+        platforms: [],
         image:'',
         date:'',
         rating:'',
-        genres: ''
+        genres: []
     });
 
 
