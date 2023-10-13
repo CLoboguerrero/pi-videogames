@@ -1,6 +1,6 @@
-.homepage {
-    margin-top: 60px;
-}
+/* .home {
+    background-color: black;
+} */
 
 .cards-container {
     display: flex;
@@ -44,3 +44,29 @@
     100% { opacity: 1; }
   }
   
+
+  .neon-sign {
+    font-family: 'Arial', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: transparent;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, #ff6bff, #6effff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 1);
+    animation: flicker 1.5s infinite alternate;
+    box-shadow: 0 0 10px 4px rgba(255, 0, 255, 0.5);
+    padding: 20px;
+    display: inline-block;
+  }
+  
+  @keyframes flicker {
+    0% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

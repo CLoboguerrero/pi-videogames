@@ -42,7 +42,7 @@ function Cards() {
     }
 
     return (
-        <div>
+        <div className='home'>
             <br />
             <br />
             {

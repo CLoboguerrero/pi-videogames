@@ -23,8 +23,10 @@
     transition-duration: .2s;
 }
 
-.characterName{
+.game-name{
     text-transform: uppercase;
+    /* color: #ff1996; */
+    color: #00efff;
 }
 
 .characterSpecs {
@@ -58,10 +60,10 @@
 
 .card-details {
     font-weight: 500;
-    color: #00aaa0;
-    border: 2px solid #00aaa0;
-    /* color: #dc2072;
-    border: 2px solid #dc2072; */
+    /* color: #00aaa0;
+    border: 2px solid #00aaa0; */
+    color: #dc2072;
+    border: 2px solid #dc2072;
     text-decoration: inherit;
     padding-left: 25px;
     padding-right: 25px;
@@ -74,10 +76,10 @@
 }
 
 .card-details:hover {
-    background-color: #00968d;
-    color: #0f0811f0;
-    /* background-color: #c0105d;
-    color: #fffffff0; */
+    /* background-color: #00968d;
+    color: #0f0811f0; */
+    background-color: #c0105d;
+    color: #fffffff0;
 }
 
 .fav-btn {
