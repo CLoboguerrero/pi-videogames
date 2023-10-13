@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 const { Op } = require('sequelize');
 const { API_KEY } = process.env;
 
@@ -9,10 +9,17 @@ const getVideogameByName = async (req, res) => {
     try {
         const gamesInDb = await Videogame.findAll({
             where: {
-                gameName: {
+                name: {
                     [Op.iLike]: `%${name}%`
                 }
-            }
+            },
+            include : {
+                model: Genre,
+                attributes: ['name'],
+                through: {
+                    attributes: [],
+                },
+            },
         });
 
         const gamesInDbModified = gamesInDb.map((game) => {
@@ -24,8 +31,10 @@ const getVideogameByName = async (req, res) => {
             };
         });
         
+    
+        let totalGames = 15 - gamesInDbModified.length;
 
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page_size=15`);
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page_size=${totalGames}`);
 
         const gamesInApi = response.data.results.map((game) => {
             return {
@@ -35,7 +44,6 @@ const getVideogameByName = async (req, res) => {
                 genres: game.genres ? game.genres.map(genre => genre.name) : [],
             };
         });
-
 
         const videogameResults = [...gamesInDbModified, ...gamesInApi];
 
