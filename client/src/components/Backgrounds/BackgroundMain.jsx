@@ -1,7 +1,6 @@
 import React from 'react';
 import './Backgrounds.modules.css';
 import backgroundVideo from '../../assets/videos/backgroundCity.webm';
-import Cards from '../Cards/Cards';
 
 function BackgroundMain() {
     return (

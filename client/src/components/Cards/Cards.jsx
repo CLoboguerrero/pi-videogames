@@ -76,7 +76,7 @@ function Cards() {
                     />
                     ))}
             </div>
-            <BackgroundMain/>
+            <BackgroundMain />
         </div>
     );
 }
