@@ -15,8 +15,10 @@ const getGenres = async (req, res) => {
 
         await Genre.bulkCreate(genres, { ignoreDuplicates: true });
 
+        const responseGenres = genres.map(genre => genre.name)
+
         console.log('Genres imported!');
-        return res.status(200).json({ message: 'Genres imported successfully!' });
+        return res.status(200).json(responseGenres);
     } catch (error) {
         console.error('Error Fetching Data:', error);
         return res.status(500).json({ error: 'Internal Server Error' })

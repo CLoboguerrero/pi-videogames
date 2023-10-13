@@ -3,9 +3,9 @@ const { Videogame, Genre, sequelize } = require('../db');
 const { API_KEY } = process.env;
 
 const postVideogame = async (req, res) => {
-    const { gameName, description, platforms, image, date, rating, genres } = req.body;
+    const { name, description, platforms, image, released, rating, genres } = req.body;
 
-    if (!gameName || !description || !platforms || !image || !date || !rating){
+    if (!name || !description || !platforms || !image || !released || !rating){
         return res.status(400).json({ error: 'Missing required fields!' });
     }
 
@@ -13,11 +13,11 @@ const postVideogame = async (req, res) => {
 
     try {
         const newGame = await Videogame.create({
-            gameName,
+            name,
             description,
             platforms,
             image,
-            date,
+            released,
             rating,
         });
 

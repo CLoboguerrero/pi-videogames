@@ -21,14 +21,27 @@ const getVideogameById = async (req, res) => {
                 },
                 include: {
                     model: Genre,
-                    attributes: ['id', 'name'],
+                    attributes: ['name'],
                     through: {
                         attributes: [],
                     },
                 },
             });
 
-            return res.status(200).json(gameInDb)
+            const genres = gameInDb.Genres.map(genre => genre.name);
+
+            const gameData = {
+                id: gameInDb.id,
+                name: gameInDb.name,
+                image: gameInDb.image,
+                description: gameInDb.description,
+                released: gameInDb.released,
+                rating: gameInDb.rating,
+                genres: genres,
+                platforms: gameInDb.platforms,
+            };
+
+            return res.status(200).json(gameData);
         } else {
             // If the id is not a UUID or is a numeric value, search in the API
             const response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
