@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, CLEAR_STATE, CLEAR_DETAILS, POST_GAME } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, POST_GAME } from "./action-types";
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -43,6 +43,34 @@ export const getGameDetails = (id) => {
                 payload: data
             })
         } catch (error){
+        };
+    };
+};
+
+export const getGenres = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${endpoint}/genres`);
+            console.log(data);
+            return dispatch ({
+                type: GET_GENRES,
+                payload: data,
+            })
+        } catch (error) {
+        };
+    };
+};
+
+export const getPlatforms = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${endpoint}/platforms`);
+            console.log(data);
+            return dispatch ({
+                type: GET_PLATFORMS,
+                payload: data,
+            })
+        } catch (error) {
         };
     };
 };
