@@ -8,21 +8,21 @@ const createVideogame = () => {
     const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
-        gameName: '',
+        name: '',
         description: '',
         platforms: [],
         image:'',
-        date:'',
+        released:'',
         rating:'',
         genres: []
     });
 
     const [errors, setErrors] = useState({
-        gameName: '',
+        name: '',
         description: '',
         platforms: [],
         image:'',
-        date:'',
+        released:'',
         rating:'',
         genres: []
     });
@@ -32,15 +32,22 @@ const createVideogame = () => {
     const [confirmationMessage, setConfirmationMessage] = useState('');
 
     const handleChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        })
+        if (event.target.name === 'platforms' || event.target.name === 'genres') {
+            setFormData(prevState => ({
+                ...prevState,
+                [event.target.name]: event.target.value.split('.').map(item => item.trim()),
+            }));
+        } else {
+            setFormData({
+                ...formData,
+                [event.target.name]: event.target.value,
+            });
+        }
     }
 
     const isFormValid = () => {
         // return !errors.gameName && !errors.description && !errors.platforms && !errors.image && !errors.date && !errors.rating && !errors. genres && formData.gameName && formData.description && formData.platforms.length > 0 && formData.image && formData.date && formData.rating && formData.genres.length > 0
-        return formData.gameName && formData.description && formData.platforms.length > 0 && formData.image && formData.date && formData.rating && formData.genres.length > 0
+        return formData.name && formData.description && formData.platforms.length > 0 && formData.image && formData.released && formData.rating && formData.genres.length > 0
     }
 
     const handleSubmit = (event) => {
@@ -50,21 +57,21 @@ const createVideogame = () => {
             setConfirmationMessage('Form Submitted successfully!');
 
             setFormData({
-                gameName: '',
+                name: '',
                 description: '',
                 platforms: [],
                 image:'',
-                date:'',
+                released:'',
                 rating:'',
                 genres: []
             });
 
             setErrors({
-                gameName: '',
+                name: '',
                 description: '',
                 platforms: [],
                 image:'',
-                date:'',
+                released:'',
                 rating:'',
                 genres: []
             });
@@ -77,10 +84,10 @@ const createVideogame = () => {
             {console.log(formData)}
             <form className='videogame-form' onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor='gameName'>Name:</label>
+                    <label htmlFor='name'>Name:</label>
                     <input
-                        id='gameName'
-                        name='gameName' 
+                        id='name'
+                        name='name' 
                         type='text'
                         value={formData.gameName}
                         onChange={handleChange}
@@ -106,7 +113,7 @@ const createVideogame = () => {
                         id='platforms'
                         name='platforms' 
                         type='text'
-                        value={formData.platforms}
+                        value={formData.platforms.join(', ')}
                         onChange={handleChange}
                     />
                 </div>
@@ -125,12 +132,12 @@ const createVideogame = () => {
                 <br />
 
                 <div>
-                    <label htmlFor='date'>Released Date:</label>
+                    <label htmlFor='released'>Released Date:</label>
                     <input
-                        id='date'
-                        name='date' 
+                        id='released'
+                        name='released' 
                         type='text'
-                        value={formData.date}
+                        value={formData.released}
                         onChange={handleChange}
                     />
                 </div>
@@ -154,7 +161,7 @@ const createVideogame = () => {
                         id='genres'
                         name='genres' 
                         type='text'
-                        value={formData.genres}
+                        value={formData.genres.join(', ')}
                         onChange={handleChange}
                     />
                 </div>

@@ -1,0 +1,32 @@
+.landing-page{
+    margin-left: -510px;
+    margin-top: -415px;
+    padding-right: 680px;
+    animation: fadeIn 2s;
+}
+
+.site-logo, .enter-button {
+    opacity: 0;
+}
+
+.site-logo{
+    width: 130%;
+    animation: fadeIn 1.5s forwards;
+    animation-delay: 1s;
+}
+
+.enter-button{
+    margin-top:15px;
+    margin-left: 115px;
+    animation: fadeIn 1.5s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes fadeInLanding {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

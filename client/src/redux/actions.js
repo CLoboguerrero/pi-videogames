@@ -80,7 +80,7 @@ export const postGame = (formData) => {
         try {
             const { data } = await axios.post(`${endpoint}/videogames`, formData);
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
         };
     };
 };
