@@ -15,8 +15,8 @@ function NavBar() {
     return(
         <nav className='nav-bar'>
             <div className='nav-links'>
-                <p><Link to = '/home'>Home</Link></p>
-                <p><Link to = '/form'><div onClick={() => handleClick()}>Form</div></Link></p>
+                <Link to = '/home'>Home</Link>
+                <Link to = '/form'><div onClick={() => handleClick()}>Form</div></Link>
                 <p>Yes</p>
                 <p>What?</p>
             </div>

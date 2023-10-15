@@ -2,10 +2,13 @@ import './Form.modules.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postGame } from '../../redux/actions';
+import GenresMenu from './GenresMenu';
 
 
 const createVideogame = () => {
     const dispatch = useDispatch();
+
+    const [formKey, setFormKey] = useState(0); 
 
     const [formData, setFormData] = useState({
         name: '',
@@ -65,6 +68,8 @@ const createVideogame = () => {
                 rating:'',
                 genres: []
             });
+
+            setFormKey((prevKey) => prevKey + 1)
 
             setErrors({
                 name: '',
@@ -155,17 +160,11 @@ const createVideogame = () => {
                 </div>
                 <br />
 
-                <div>
+                {/* <div>
                     <label htmlFor='genres'>Genres:</label>
-                    <input
-                        id='genres'
-                        name='genres' 
-                        type='text'
-                        value={formData.genres.join(', ')}
-                        onChange={handleChange}
-                    />
+                    <GenresMenu key={formKey} onChange={handleChange} />
                 </div>
-                <br />
+                <br /> */}
 
                 <button
                     className={isFormValid() ? 'enabled-button' : 'disabled-button'}

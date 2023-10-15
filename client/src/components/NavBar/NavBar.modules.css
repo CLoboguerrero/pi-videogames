@@ -48,6 +48,7 @@ img#app-logo{
 
 .nav-links a {
     color: white;
+    margin-top: 18px;
 }
 
 .nav-links a:hover {
