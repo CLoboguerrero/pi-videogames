@@ -1,17 +1,12 @@
 import './Landing.modules.css'
 import BackgroundLanding from '../Backgrounds/BackgroundLanding';
 import Logo from '../../assets/images/VideogamesLogo.png';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getGenres, getPlatforms } from '../../redux/actions';
 
 function Landing () {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleClick = () => {
-        dispatch(getGenres());
-        dispatch(getPlatforms());
         navigate('/home');
     }
 
