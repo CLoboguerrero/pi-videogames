@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES } from "./action-types";
 
 const initialState = {
     allGames: [],
@@ -51,7 +51,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 gameDetails: [],
             }
-            
+
+        case CLEAR_ALL_GAMES:
+            return {
+                ...state,
+                allGames: [],
+            }            
+
         default:
             return {...state}
     };

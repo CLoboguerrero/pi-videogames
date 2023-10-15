@@ -6,3 +6,4 @@ export const GET_PLATFORMS = 'GET_PLATFORMS';
 export const POST_GAME = 'POST_GAME';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CLEAR_DETAILS = 'CLEAR_DETAILS';
+export const CLEAR_ALL_GAMES = 'CLEAR_ALL_GAMES';

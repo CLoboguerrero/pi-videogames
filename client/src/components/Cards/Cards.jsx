@@ -30,7 +30,7 @@ function Cards() {
         if(displayGames.length === 0) {
            dispatch(getAllGames());
         }
-    },[]);
+    },[dispatch]);
 
     const handleGoBack = () => {
         dispatch(clearState());

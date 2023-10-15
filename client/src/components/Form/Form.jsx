@@ -1,9 +1,10 @@
 import './Form.modules.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { clearAllGames } from '../../redux/actions';
 import { postGame } from '../../redux/actions';
 import GenresMenu from './GenresMenu';
-
+import PlatformsMenu from './PlatformsMenu';
 
 const createVideogame = () => {
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const createVideogame = () => {
         if (event.target.name === 'platforms' || event.target.name === 'genres') {
             setFormData(prevState => ({
                 ...prevState,
-                [event.target.name]: event.target.value.split('.').map(item => item.trim()),
+                [event.target.name]: event.target.value.map(item => item.trim()),
             }));
         } else {
             setFormData({
@@ -46,17 +47,19 @@ const createVideogame = () => {
                 [event.target.name]: event.target.value,
             });
         }
-    }
+    };
 
     const isFormValid = () => {
         // return !errors.gameName && !errors.description && !errors.platforms && !errors.image && !errors.date && !errors.rating && !errors. genres && formData.gameName && formData.description && formData.platforms.length > 0 && formData.image && formData.date && formData.rating && formData.genres.length > 0
         return formData.name && formData.description && formData.platforms.length > 0 && formData.image && formData.released && formData.rating && formData.genres.length > 0
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (isFormValid()) {
-            dispatch(postGame(formData))
+
+            dispatch(postGame(formData));
+            dispatch(clearAllGames());
             setConfirmationMessage('Form Submitted successfully!');
 
             setFormData({
@@ -83,6 +86,7 @@ const createVideogame = () => {
             setSubmitted(true);
         };
     };
+
 
     return (
         <div>
@@ -114,13 +118,7 @@ const createVideogame = () => {
 
                 <div>
                     <label htmlFor='platforms'>Platforms:</label>
-                    <input
-                        id='platforms'
-                        name='platforms' 
-                        type='text'
-                        value={formData.platforms.join(', ')}
-                        onChange={handleChange}
-                    />
+                    <PlatformsMenu key={formKey} onChange={handleChange} />
                 </div>
                 <br />
 
@@ -160,11 +158,11 @@ const createVideogame = () => {
                 </div>
                 <br />
 
-                {/* <div>
+                <div>
                     <label htmlFor='genres'>Genres:</label>
                     <GenresMenu key={formKey} onChange={handleChange} />
                 </div>
-                <br /> */}
+                <br />
 
                 <button
                     className={isFormValid() ? 'enabled-button' : 'disabled-button'}
