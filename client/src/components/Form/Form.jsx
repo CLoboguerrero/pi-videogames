@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearAllGames } from '../../redux/actions';
 import { postGame } from '../../redux/actions';
+import validate from './validations';
 import GenresMenu from './GenresMenu';
 import PlatformsMenu from './PlatformsMenu';
 
@@ -44,9 +45,14 @@ const createVideogame = () => {
         } else {
             setFormData({
                 ...formData,
-                [event.target.name]: event.target.value,
+                [event.target.name]: event.target.value
             });
         }
+
+        setErrors(validate ({
+            ...formData,
+            [event.target.name]: event.target.value
+        }));
     };
 
     const isFormValid = () => {
