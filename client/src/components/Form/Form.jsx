@@ -1,8 +1,7 @@
 import './Form.modules.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { clearAllGames } from '../../redux/actions';
-import { postGame } from '../../redux/actions';
+import { postGame, getGenres, getPlatforms, clearAllGames } from '../../redux/actions';
 import { uploadImage } from './cloudinary';
 import validate from './validations';
 import GenresMenu from './GenresMenu';
@@ -11,6 +10,11 @@ import PlatformsMenu from './PlatformsMenu';
 const createVideogame = () => {
     const dispatch = useDispatch();
     const fileInput = useRef(null);
+
+    useEffect(() => {
+        dispatch(getPlatforms());
+        dispatch(getGenres());
+    },[dispatch])
 
     const [formKey, setFormKey] = useState(0); 
 
