@@ -1,14 +1,16 @@
 import './Form.modules.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearAllGames } from '../../redux/actions';
 import { postGame } from '../../redux/actions';
+import { uploadImage } from './cloudinary';
 import validate from './validations';
 import GenresMenu from './GenresMenu';
 import PlatformsMenu from './PlatformsMenu';
 
 const createVideogame = () => {
     const dispatch = useDispatch();
+    const fileInput = useRef(null);
 
     const [formKey, setFormKey] = useState(0); 
 
@@ -54,6 +56,27 @@ const createVideogame = () => {
             [event.target.name]: event.target.value
         }));
     };
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            try {
+                const imageUrl = await uploadImage(file);
+                if (imageUrl) {
+                    setFormData({
+                        ...formData,
+                        image: imageUrl
+                    });
+                    //fileInput.current.value = '';
+                } else {
+                    // Handle the case where imageUrl is undefined (upload failed)
+                    console.error('Image upload failed.');
+                }
+            } catch (error) {
+                console.error('Error uploading file', error);
+            }
+        }
+    }
 
     const isFormValid = () => {
         // return !errors.gameName && !errors.description && !errors.platforms && !errors.image && !errors.date && !errors.rating && !errors. genres && formData.gameName && formData.description && formData.platforms.length > 0 && formData.image && formData.date && formData.rating && formData.genres.length > 0
@@ -133,9 +156,9 @@ const createVideogame = () => {
                     <input
                         id='image'
                         name='image' 
-                        type='text'
-                        value={formData.image}
-                        onChange={handleChange}
+                        type='file'
+                        ref={fileInput}
+                        onChange={handleFileChange}
                     />
                 </div>
                 <br />
