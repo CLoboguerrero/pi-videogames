@@ -1,9 +1,18 @@
 const axios = require('axios');
 const { Videogame, Genre, sequelize } = require('../db');
-const { API_KEY } = process.env;
+const cloudinary = require('cloudinary').v2;
+const { CLOUD_NAME, API_KEY_CLOUD, API_SECRET } = process.env;
+
+cloudinary.config({ 
+    cloud_name: CLOUD_NAME, 
+    api_key: API_KEY_CLOUD, 
+    api_secret: API_SECRET 
+  });
+
 
 const postVideogame = async (req, res) => {
     const { name, description, platforms, image, released, rating, genres } = req.body;
+    const imageUrl = req.body.image;
 
     if (!name || !description || !platforms || !image || !released || !rating){
         return res.status(400).json({ error: 'Missing required fields!' });
@@ -16,7 +25,7 @@ const postVideogame = async (req, res) => {
             name,
             description,
             platforms,
-            image,
+            image: imageUrl,
             released,
             rating,
         });
