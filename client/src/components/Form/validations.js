@@ -1,5 +1,5 @@
 const validate = (formData) => {
-    const errors = {}
+    const errors = {};
 
     if (formData.name.length < 3 || formData.name.length > 25){
         errors.name = 'Name must have between 3 and 25 characters';
@@ -44,6 +44,7 @@ const validate = (formData) => {
     if (!formData.genres) {
         errors.genres = 'Please select at least one genre';
     }
+    return errors;
 }
 
 export default validate;
