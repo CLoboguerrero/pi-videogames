@@ -57,7 +57,21 @@ const createVideogame = () => {
 
     const handleFileChange = async (event) => {
         const file = event.target.files[0];
+    
         if (file) {
+            // Check file format
+            if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
+                alert('Invalid file format. Please upload a JPEG, JPG or PNG image.');
+                return;
+            }
+    
+            // Check file size (5MB limit)
+            const maxSize = 5 * 1024 * 1024; // 5MB limit
+            if (file.size > maxSize) {
+                alert('File size exceeds 5MB limit.');
+                return;
+            }
+    
             try {
                 const imageUrl = await uploadImage(file);
                 if (imageUrl) {
@@ -66,10 +80,10 @@ const createVideogame = () => {
                         image: imageUrl
                     });
                 } else {
-                    console.error('Image upload failed.');
+                    alert('Image upload failed. Please, try again later.');
                 }
             } catch (error) {
-                console.error('Error uploading file', error);
+                alert('Error uploading file. Please try again later.', error);
             }
         }
     }
@@ -168,6 +182,7 @@ const createVideogame = () => {
                         id='released'
                         name='released' 
                         type='text'
+                        placeholder='YYYY-MM-DD'
                         value={formData.released}
                         onChange={handleChange}
                     />

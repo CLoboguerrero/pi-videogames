@@ -23,6 +23,19 @@ const validate = (formData) => {
 
     if (!formData.image) {
         errors.image = 'Please upload an image';
+    } else {
+        const allowedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
+        const maxSize = 5 * 1024 * 1024; // 5MB limit
+
+        if (!allowedFormats.includes(formData.image.type)) {
+            errors.image = 'Invalid file format. Please upload a JPEG or PNG image.';
+        } else if (formData.image.size > maxSize) {
+            errors.image = 'File size exceeds 5MB limit.';
+        }
+    }
+
+    if (!/^(?:197\d|198\d|199\d|200\d|201\d|202\d|2030)-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])$/.test(formData.released)){
+        errors.released = 'Please insert a valid date in the correspondant format. Minimum released date year: 1970'
     }
 
     if (!formData.released) {
