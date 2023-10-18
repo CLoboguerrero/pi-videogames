@@ -14,12 +14,12 @@ function Pagination ({ currentPage, totalPages, onPageChange }) {
 
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}>&lt;</button>
+                disabled={currentPage === 1}>&lt; Previous</button>
 
             <span>{`Page ${currentPage} of ${totalPages}`}</span>
 
             <button onClick={() => handlePageChange(currentPage + 1)}
-                disabled = {currentPage === totalPages}>&gt;</button>
+                disabled = {currentPage === totalPages}>Next  &gt;</button>
 
             <button
                 onClick={() => handlePageChange(totalPages)}
