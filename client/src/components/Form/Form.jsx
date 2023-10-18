@@ -71,9 +71,7 @@ const createVideogame = () => {
                         ...formData,
                         image: imageUrl
                     });
-                    //fileInput.current.value = '';
                 } else {
-                    // Handle the case where imageUrl is undefined (upload failed)
                     console.error('Image upload failed.');
                 }
             } catch (error) {

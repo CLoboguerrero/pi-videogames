@@ -8,8 +8,8 @@ function NavBar() {
         <nav className='nav-bar'>
             <div className='nav-links'>
                 <Link to = '/home'>Home</Link>
-                <Link to = '/form'>Form</Link>
-                <p>Yes</p>
+                <Link to = '/form'>Custom Games</Link>
+                <p>Your Games Library</p>
                 <p>What?</p>
             </div>
             <Search/>
