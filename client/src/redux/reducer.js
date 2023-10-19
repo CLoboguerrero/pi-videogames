@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_GAMES } from "./action-types";
 
 const initialState = {
     allGames: [],
@@ -6,6 +6,8 @@ const initialState = {
     gameDetails: [],
     getGenres: [],
     getPlatforms: [],
+    filterGames: [],
+    sotGames: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,9 +16,10 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 allGames: action.payload,
+                filterGames: action.payload,
             }
 
-        case GET_GAME:
+        case GET_GAME_BY_NAME:
             return{
                 ...state,
                 foundGames: action.payload,
@@ -56,7 +59,34 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 allGames: [],
-            }            
+            }
+            
+        case FILTER_GAMES:
+            if (action.payload === 'gamesInDb') {
+                const gamesStoredInDb = state.allGames.filter((game) => isNaN(game.id));
+                return {
+                    ...state,
+                    filterGames: gamesStoredInDb,
+                };
+            } else if (action.payload === 'gamesInApi') {
+                const gamesFromApi = state.allGames.filter((game) => !isNaN(game.id));
+                return {
+                    ...state,
+                    filterGames: gamesFromApi,
+                };
+            } else if (action.payload === 'showAll') {
+                return {
+                    ...state,
+                    filterGames: state.allGames,
+                };
+            }
+            return state;
+
+
+        case SORT_GAMES:
+            return{
+
+            }
 
         default:
             return {...state}

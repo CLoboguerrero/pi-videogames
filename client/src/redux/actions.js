@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, POST_GAME } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, POST_GAME, FILTER_GAMES, SORT_GAMES } from "./action-types";
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -24,7 +24,7 @@ export const getGame = (name) => {
             const { data } = await axios.get(`${endpoint}/videogames/name?name=${name}`);
             console.log(data);
             return dispatch({
-                type: GET_GAME,
+                type: GET_GAME_BY_NAME,
                 payload: data,
             });
         } catch (error) {
@@ -102,3 +102,10 @@ export const clearAllGames = () => {
         type: CLEAR_ALL_GAMES,
     };   
 };
+
+export const filterOrigin = (origin) => {
+    return {
+        type: FILTER_GAMES,
+        payload: origin
+    }
+}

@@ -46,7 +46,7 @@ function Cards() {
             <br />
             <br />
             {
-            displayGames.length > 15 && displaySearchGames.length === 0 
+            displayGames.length >= 1 && displaySearchGames.length === 0 
             ?   <div className='all-games'>
                     <h1>Videogames List:</h1>
                     <Pagination 

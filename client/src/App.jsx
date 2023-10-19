@@ -6,7 +6,7 @@ import Landing from './components/Landing/Landing';
 import Cards from './components/Cards/Cards';
 import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
-import Loading from './components/Loading/Loading';
+import Filters from './components/Filter/Filter';
 
 function App() {
   const location = useLocation();
@@ -19,7 +19,7 @@ function App() {
         <Route path='/home' element={<Cards />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/form' element={<Form />} />
-        <Route path='/test' element={<Loading />} />
+        <Route path='/test' element={<Filters />} />
       </Routes>
     </div>
   )
