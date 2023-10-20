@@ -5,12 +5,18 @@ import { filterOrigin } from '../../redux/actions';
 import Card from "../Card/Card";
 
 const Filters = () => {
-
+    
     const dispatch = useDispatch();
     const filterGames = useSelector(state => state.filterGames)
 
+    const [name, setName] = useState('')
+
+    const handleSelect = (event) => {
+        setName(event.target.value);
+    }
+
     const handleFilter = (event) => {
-        dispatch(filterOrigin(event.target.value))
+        dispatch(filterOrigin(event.target.dataset.filter))
     }
 
     return (
@@ -23,6 +29,9 @@ const Filters = () => {
                     <option value="gamesInApi">Stored in API</option>
                     <option value="showAll">Show All</option>
                 </select>
+                <h3 className='select-buttons' data-filter='showAll' onClick={handleFilter}>All Games</h3>
+                <h3 className='select-buttons' data-filter='gamesInDb' onClick={handleFilter}>Games in DB</h3>
+                <h3 className='select-buttons' data-filter='gamesInApi' onClick={handleFilter}>Games in API</h3>
             </div>
 
             <div className='filters-container'>
