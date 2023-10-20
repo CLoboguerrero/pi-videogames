@@ -11,7 +11,7 @@ import BackgroundMain from '../Backgrounds/BackgroundMain';
 
 function Cards() {
     const dispatch = useDispatch();
-    const displayGames = useSelector((state) => state.allGames);
+    const displayGames = useSelector((state) => state.filterGames);
     const displaySearchGames = useSelector((state) => state.foundGames);
     
     const [currentPage, setCurrentPage] = useState(1);

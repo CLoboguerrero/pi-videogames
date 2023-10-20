@@ -17,12 +17,19 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allGames: action.payload,
                 filterGames: action.payload,
+                // filterGames: state.foundGames.length === 0 
+                // ? action.payload 
+                // : state.filterGames,
             }
 
         case GET_GAME_BY_NAME:
             return{
                 ...state,
                 foundGames: action.payload,
+                filterGames: action.payload,
+                // filterGames: action.payload.length > 0 
+                // ? action.payload 
+                // : state.allGames,
             }
 
         case GET_GAME_DETAILS:
@@ -47,6 +54,7 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 foundGames: [],
+                filterGames: state.allGames,
             }
 
         case CLEAR_DETAILS:
