@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_BY_RATING } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_BY_RATING, SORT_BY_NAME } from "./action-types";
 
 const initialState = {
     allGames: [],
@@ -92,7 +92,7 @@ const reducer = (state = initialState, action) => {
 
 
         case SORT_BY_RATING:
-            const allGamesCopy = [...state.allGames]
+            const allGamesCopy = [...state.allGames];
             
             return{
                 ...state,
@@ -101,6 +101,24 @@ const reducer = (state = initialState, action) => {
                     ? allGamesCopy.sort((a, b) => a.rating - b.rating)
                     : allGamesCopy.sort((a, b) => b.rating - a.rating)
             }
+
+        case SORT_BY_NAME:
+            const gamesByNameCopy = [...state.filterGames];
+            return {
+                ...state,
+                filterGames: gamesByNameCopy.sort((a, b) => {
+                    const nameA = String(a.name).toUpperCase();
+                    const nameB = String(b.name).toUpperCase();
+
+                    if (nameA < nameB) {
+                        return action.payload === 'A' ? -1 : 1;
+                    }
+                    if (nameA > nameB) {
+                        return action.payload === 'A' ? 1 : -1;
+                    }
+                    return 0;
+                }),
+            };
 
         default:
             return {...state}

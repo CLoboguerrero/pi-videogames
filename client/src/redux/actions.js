@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, POST_GAME, FILTER_GAMES, SORT_BY_RATING } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, POST_GAME, FILTER_GAMES, SORT_BY_RATING, SORT_BY_NAME } from "./action-types";
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001'
@@ -110,9 +110,16 @@ export const filterOrigin = (origin) => {
     };
 };
 
-export const sortGames = (sort) => {
+export const sortGamesByRating = (sort) => {
     return {
         type: SORT_BY_RATING,
+        payload: sort
+    }
+}
+
+export const sortGamesByName = (sort) => {
+    return {
+        type: SORT_BY_NAME,
         payload: sort
     }
 }

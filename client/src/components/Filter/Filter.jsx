@@ -1,7 +1,7 @@
 import './Filter.modules.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterOrigin, sortGames } from '../../redux/actions';
+import { filterOrigin, sortGamesByRating, sortGamesByName } from '../../redux/actions';
 import Card from "../Card/Card";
 
 const Filters = () => {
@@ -12,8 +12,13 @@ const Filters = () => {
     const [name, setName] = useState('');
     const [aux, setAux] = useState(false);
 
-    const handleSelect = (event) => {
-        dispatch(sortGames(event.target.value));
+    const handleSelectRating = (event) => {
+        dispatch(sortGamesByRating(event.target.value));
+        setAux(true);
+    }
+
+    const handleSelectName = (event) => {
+        dispatch(sortGamesByName(event.target.value));
         setAux(true);
     }
 
@@ -38,13 +43,21 @@ const Filters = () => {
 
             <div className="filter-sort">
                     <h2 className="filter-title">Sort By Rating:</h2>
-                    <select name="order" onChange={handleSelect}>
+                    <select name="order" onChange={handleSelectRating}>
                         <option value="" disabled>Order:</option>
                         <option value="D">Higher rating</option>
                         <option value="A">Lower Rating</option>
                     </select>
             </div>
 
+            <div className="filter-sort">
+                    <h2 className="filter-title">Sort By Name:</h2>
+                    <select name="order" onChange={handleSelectName}>
+                        <option value="" disabled>Order:</option>
+                        <option value="A">Ascending</option>
+                        <option value="D">Descending</option>
+                    </select>
+            </div>
 
             <div className='filters-container'>
             {
