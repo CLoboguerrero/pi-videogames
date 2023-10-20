@@ -22,6 +22,7 @@ const getAllVideogames = async (req, res) => {
                 id: game.id,
                 name: game.name,
                 image: game.image,
+                rating: game.rating,
                 genres: game.Genres.map(genre => genre.name),
             };
         });
@@ -35,6 +36,7 @@ const getAllVideogames = async (req, res) => {
                     id: game.id,
                     name: game.name,
                     image: game.background_image,
+                    rating: game.rating,
                     genres: game.genres.map(genre => genre.name),
                 };
             });

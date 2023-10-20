@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const { getAllVideogames } = require('../handlers/getAllVideogames');
-const { getVideogameByName } = require('../handlers/getVideogameByName');
-const { getVideogameById } = require('../handlers/getVideogameById');
-const { getGenres } = require('../handlers/getGenres');
-const { getPlatforms } = require('../handlers/getPlatforms');
-const { postVideogame } = require('../handlers/postVideogame');
+const { getAllVideogames } = require('../controllers/getAllVideogames');
+const { getVideogameByName } = require('../controllers/getVideogameByName');
+const { getVideogameById } = require('../controllers/getVideogameById');
+const { getGenres } = require('../controllers/getGenres');
+const { getPlatforms } = require('../controllers/getPlatforms');
+const { postVideogame } = require('../controllers/postVideogame');
 
 
 const router = Router();
