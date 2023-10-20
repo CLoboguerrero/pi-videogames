@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_GAMES } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_BY_RATING } from "./action-types";
 
 const initialState = {
     allGames: [],
@@ -7,7 +7,7 @@ const initialState = {
     getGenres: [],
     getPlatforms: [],
     filterGames: [],
-    sotGames: [],
+    sortGames: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -91,9 +91,15 @@ const reducer = (state = initialState, action) => {
             return state;
 
 
-        case SORT_GAMES:
+        case SORT_BY_RATING:
+            const allGamesCopy = [...state.allGames]
+            
             return{
-
+                ...state,
+                filterGames:
+                    action.payload === 'A'
+                    ? allGamesCopy.sort((a, b) => a.rating - b.rating)
+                    : allGamesCopy.sort((a, b) => b.rating - a.rating)
             }
 
         default:

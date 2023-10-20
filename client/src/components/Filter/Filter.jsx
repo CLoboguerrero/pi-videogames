@@ -1,7 +1,7 @@
 import './Filter.modules.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterOrigin } from '../../redux/actions';
+import { filterOrigin, sortGames } from '../../redux/actions';
 import Card from "../Card/Card";
 
 const Filters = () => {
@@ -9,10 +9,12 @@ const Filters = () => {
     const dispatch = useDispatch();
     const filterGames = useSelector(state => state.filterGames)
 
-    const [name, setName] = useState('')
+    const [name, setName] = useState('');
+    const [aux, setAux] = useState(false);
 
     const handleSelect = (event) => {
-        setName(event.target.value);
+        dispatch(sortGames(event.target.value));
+        setAux(true);
     }
 
     const handleFilter = (event) => {
@@ -34,6 +36,16 @@ const Filters = () => {
                 <h3 className='select-buttons' data-filter='gamesInApi' onClick={handleFilter}>Games in API</h3>
             </div>
 
+            <div className="filter-sort">
+                    <h2 className="filter-title">Sort By Rating:</h2>
+                    <select name="order" onChange={handleSelect}>
+                        <option value="" disabled>Order:</option>
+                        <option value="D">Higher rating</option>
+                        <option value="A">Lower Rating</option>
+                    </select>
+            </div>
+
+
             <div className='filters-container'>
             {
                 filterGames.map(game => {
@@ -43,6 +55,7 @@ const Filters = () => {
                             id={game.id}
                             image={game.image}
                             name={game.name}
+                            rating={game.rating}
                             genres={game.genres}
                         />
                     );

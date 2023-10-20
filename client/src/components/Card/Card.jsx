@@ -1,13 +1,14 @@
 import './Card.modules.css';
 import { Link } from 'react-router-dom';
 
-function Card ({ id, name, image, genres }) {
+function Card ({ id, name, image, rating, genres }) {
     return (
         <div className='card'>
             <div className='game-img-container'>
                 <img className='img-card' src={image} alt='game-image' />
             </div>
             <h2 className='game-name'>{name}</h2>
+            <h2 className='game-rating'>{rating}</h2>
             <h2 className='game-genres'><span style={{ fontWeight: 'bold' }}>Genres: </span>{genres.join(' ')}</h2>
 
             <div className='bottom-buttons'>

@@ -8,4 +8,5 @@ export const CLEAR_STATE = 'CLEAR_STATE';
 export const CLEAR_DETAILS = 'CLEAR_DETAILS';
 export const CLEAR_ALL_GAMES = 'CLEAR_ALL_GAMES';
 export const FILTER_GAMES = 'FILTER_GAMES';
-export const SORT_GAMES = 'SORT_GAMES';
+export const SORT_BY_RATING = 'SORT_BY_RATING';
+export const SORT_BY_NAME = 'SORT_BY_NAME';
