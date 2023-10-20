@@ -11,10 +11,10 @@ const createVideogame = () => {
     const dispatch = useDispatch();
     const fileInput = useRef(null);
 
-    useEffect(() => {
-        dispatch(getPlatforms());
-        dispatch(getGenres());
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(getPlatforms());
+    //     dispatch(getGenres());
+    // },[dispatch])
 
     const [formKey, setFormKey] = useState(0); 
 

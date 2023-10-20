@@ -2,7 +2,7 @@ import './Cards.modules.css'
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllGames, clearState } from '../../redux/actions';
+import { getAllGames, getGenres, getPlatforms, clearState } from '../../redux/actions';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import Loading from '../Loading/Loading';
@@ -13,6 +13,8 @@ function Cards() {
     const dispatch = useDispatch();
     const displayGames = useSelector((state) => state.filterGames);
     const displaySearchGames = useSelector((state) => state.foundGames);
+    const genresList = useSelector((state) => state.getGenres);
+    const platformsList = useSelector((state) => state.getPlatforms);
     
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = Math.ceil(displayGames.length / 15)
@@ -28,7 +30,11 @@ function Cards() {
 
     useEffect(() => {
         if(displayGames.length === 0) {
-           dispatch(getAllGames());
+            dispatch(getAllGames());
+        }
+        if(genresList.length === 0 && platformsList.length === 0){
+            dispatch(getGenres());
+            dispatch(getPlatforms());
         }
     },[dispatch]);
 
