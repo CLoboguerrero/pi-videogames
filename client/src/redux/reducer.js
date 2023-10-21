@@ -71,28 +71,53 @@ const reducer = (state = initialState, action) => {
             
         case FILTER_GAMES:
             if (action.payload === 'gamesInDb') {
-                const gamesStoredInDb = state.allGames.filter((game) => isNaN(game.id));
-                return {
-                    ...state,
-                    filterGames: gamesStoredInDb,
-                };
+                if (state.foundGames.length > 0) {
+                    const gamesStoredInDb = state.foundGames.filter((game) => isNaN(game.id));
+                    return{
+                        ...state,
+                        filterGames: gamesStoredInDb,
+                    }
+                } else {
+                    const gamesStoredInDb = state.allGames.filter((game) => isNaN(game.id));
+                    return {
+                        ...state,
+                        filterGames: gamesStoredInDb,
+                    };
+                }
+
             } else if (action.payload === 'gamesInApi') {
-                const gamesFromApi = state.allGames.filter((game) => !isNaN(game.id));
-                return {
-                    ...state,
-                    filterGames: gamesFromApi,
-                };
+                if (state.foundGames.length > 0) {
+                    const gamesFromApi = state.foundGames.filter((game) => !isNaN(game.id));
+                    return{
+                        ...state,
+                        filterGames: gamesFromApi
+                    }
+                } else {
+                    const gamesFromApi = state.allGames.filter((game) => !isNaN(game.id));
+                    return {
+                        ...state,
+                        filterGames: gamesFromApi,
+                    };
+                }
+
             } else if (action.payload === 'showAll') {
-                return {
-                    ...state,
-                    filterGames: state.allGames,
-                };
+                if (state.foundGames.length > 0) {
+                    return{
+                        ...state,
+                        filterGames: state.foundGames,
+                    }
+                } else {
+                    return {
+                        ...state,
+                        filterGames: state.allGames,
+                    };
+                }
             }
             return state;
 
         case FILTER_BY_GENRE:
             const genreToFilter = action.payload;
-            const allGamesGenreCopy = [...state.allGames];
+            const allGamesGenreCopy = [...state.filterGames];
         
             // If the selected genre is empty, show all games
             if (!genreToFilter) {
@@ -111,7 +136,7 @@ const reducer = (state = initialState, action) => {
             };
 
         case SORT_BY_RATING:
-            const allGamesCopy = [...state.allGames];
+            const allGamesCopy = [...state.filterGames];
             
             return{
                 ...state,

@@ -6,7 +6,7 @@ import Landing from './components/Landing/Landing';
 import Cards from './components/Cards/Cards';
 import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
-import Filters from './components/Filter/Filter';
+import Filters from './components/Filters/Filters';
 
 function App() {
   const location = useLocation();

@@ -1,8 +1,7 @@
-import './Filter.modules.css'
+import './Filters.modules.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterOrigin, filterByGenre, sortGamesByRating, sortGamesByName } from '../../redux/actions';
-import Card from "../Card/Card";
 
 const Filters = () => {
     
@@ -11,14 +10,18 @@ const Filters = () => {
     const genresMenu = useSelector(state => state.getGenres);
  
     const [selectedGenre, setSelectedGenre] = useState('');
+    const [selectedRating, setSelectedRating] = useState('');
+    const [selectedName, setSelectedName] = useState('');
     const [aux, setAux] = useState(false);
     
     const handleSelectRating = (event) => {
+        setSelectedRating(event.target.value);
         dispatch(sortGamesByRating(event.target.value));
         setAux(true);
     }
     
     const handleSelectName = (event) => {
+        setSelectedName(event.target.value);
         dispatch(sortGamesByName(event.target.value));
         setAux(true);
     }
@@ -28,11 +31,17 @@ const Filters = () => {
     }
     
     const handleSelectChange = (event) => {
-        const selectedGenre = event.target.value
-        setSelectedGenre(selectedGenre);
-        dispatch(filterByGenre(selectedGenre));
+        setSelectedGenre(event.target.value);
+        dispatch(filterByGenre(event.target.value));
         setAux(true);
     }
+
+    const handleReset = () => {
+        setSelectedGenre('');
+        setSelectedRating('');
+        setSelectedName('');
+        dispatch(filterOrigin('showAll'));
+    };
 
     const sortedGenres = genresMenu.slice().sort((a, b) => {
         if (a < b) return -1;
@@ -84,6 +93,8 @@ const Filters = () => {
                     ))}
                 </select>
             </div>
+
+            <button onClick={handleReset}>Reset Filters</button>
         </div>
     )
 }

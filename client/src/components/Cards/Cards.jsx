@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames, getGenres, getPlatforms, clearState } from '../../redux/actions';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
-import Filters from '../Filter/Filter';
+import Filters from '../Filters/Filters';
 import Loading from '../Loading/Loading';
 import BackgroundMain from '../Backgrounds/BackgroundMain';
 
@@ -23,10 +23,10 @@ function Cards() {
     const endIndex = startIndex + 15;
     const gamesPaginated = displayGames.slice(startIndex, endIndex)
     
-    let stateToShow = gamesPaginated;
+    // let stateToShow = gamesPaginated;
 
-    if (displaySearchGames.length > 0) stateToShow = displaySearchGames;
-    else stateToShow = gamesPaginated;
+    // if (displaySearchGames.length > 0) stateToShow = displaySearchGames;
+    // else stateToShow = gamesPaginated;
 
 
     useEffect(() => {
@@ -75,7 +75,7 @@ function Cards() {
         }       
 
             <div className='cards-container'>
-                {stateToShow.map((game) => (
+                {gamesPaginated.map((game) => (
                     <Card
                     key={game.id}
                     id={game.id}
