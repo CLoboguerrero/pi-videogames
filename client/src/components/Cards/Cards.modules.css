@@ -18,11 +18,13 @@
 .all-games h1 {
     font-size: 5em;
     text-shadow: 5px 5px 11px rgb(41 186 222);
+    margin-bottom: 0px;
 }
 
 .search-results h1 {
     font-size: 5em;
     text-shadow: 8px 8px 15px rgb(86 36 166), 0 0 5px rgb(0 0 0 / 80%), 0 0 12px rgb(33 37 71 / 80%);
+    margin-bottom: 0px;
 }
 
 

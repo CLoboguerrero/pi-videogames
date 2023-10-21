@@ -41,18 +41,18 @@ const Filters = () => {
     });
 
     return (
-        <div>
-            <h2>Filter test</h2>
-            <div className='filter-test'>
-                <h2 className='filter-origin'></h2>
-                <select name="order" onChange={handleFilter}>
-                    <option value="gamesInDb">Stored in DB</option>
-                    <option value="gamesInApi">Stored in API</option>
-                    <option value="showAll">Show All</option>
-                </select>
-                <h3 className='select-buttons' data-filter='showAll' onClick={handleFilter}>All Games</h3>
-                <h3 className='select-buttons' data-filter='gamesInDb' onClick={handleFilter}>Games in DB</h3>
-                <h3 className='select-buttons' data-filter='gamesInApi' onClick={handleFilter}>Games in API</h3>
+        <div className='filter-bar'>
+            <br />
+            <br />
+            <div className='games-origin'>
+                <div>
+                    <h2 className='origin-title'>Display Games From:</h2>
+                </div>
+                <div className='select-buttons-container'>
+                    <h3 className='select-buttons' data-filter='showAll' onClick={handleFilter}>All Games</h3>
+                    <h3 className='select-buttons' data-filter='gamesInDb' onClick={handleFilter}>Games in DB</h3>
+                    <h3 className='select-buttons' data-filter='gamesInApi' onClick={handleFilter}>Games in API</h3>
+                </div>
             </div>
 
             <div className="rating-sort">
@@ -74,7 +74,7 @@ const Filters = () => {
             </div>
 
             <div className='genres-list'>
-                <h2>Filter by Genre:</h2>
+                <h2 className='genre-title'>Filter by Genre:</h2>
                 <select name='genres' value={selectedGenre} onChange={handleSelectChange}>
                     <option value="">Filter by Genre:</option>
                     {sortedGenres.map((genre) => (
@@ -83,25 +83,6 @@ const Filters = () => {
                         </option>
                     ))}
                 </select>
-            </div>
-
-
-
-            <div className='filters-container'>
-            {
-                filterGames.map(game => {
-                    return (
-                        <Card
-                            key={game.id}
-                            id={game.id}
-                            image={game.image}
-                            name={game.name}
-                            rating={game.rating}
-                            genres={game.genres}
-                        />
-                    );
-                })
-            }
             </div>
         </div>
     )

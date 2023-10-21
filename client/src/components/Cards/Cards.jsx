@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames, getGenres, getPlatforms, clearState } from '../../redux/actions';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
+import Filters from '../Filter/Filter';
 import Loading from '../Loading/Loading';
 import BackgroundMain from '../Backgrounds/BackgroundMain';
 
@@ -55,6 +56,7 @@ function Cards() {
             displayGames.length >= 1 && displaySearchGames.length === 0 
             ?   <div className='all-games'>
                     <h1>Videogames List:</h1>
+                    <Filters />
                     <Pagination 
                         currentPage={currentPage} 
                         totalPages={totalPages} 
@@ -65,6 +67,7 @@ function Cards() {
                 : displaySearchGames.length > 0 && displaySearchGames.length <= 15
                 ?   <div className='search-results'> 
                     <h1>Search Results:</h1>
+                    <Filters />
                     <button onClick={handleGoBack}>Go Back to Games List</button>
                 </div>
             
