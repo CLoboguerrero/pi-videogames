@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_STATE, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_BY_RATING, SORT_BY_NAME, FILTER_BY_GENRE } from "./action-types";
+import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLATFORMS, CLEAR_FOUND_GAMES, CLEAR_DETAILS, CLEAR_ALL_GAMES, FILTER_GAMES, SORT_BY_RATING, SORT_BY_NAME, FILTER_BY_GENRE } from "./action-types";
 
 const initialState = {
     allGames: [],
@@ -17,9 +17,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allGames: action.payload,
                 filterGames: action.payload,
-                // filterGames: state.foundGames.length === 0 
-                // ? action.payload 
-                // : state.filterGames,
             }
 
         case GET_GAME_BY_NAME:
@@ -27,9 +24,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 foundGames: action.payload,
                 filterGames: action.payload,
-                // filterGames: action.payload.length > 0 
-                // ? action.payload 
-                // : state.allGames,
             };
 
         case GET_GAME_DETAILS:
@@ -50,7 +44,7 @@ const reducer = (state = initialState, action) => {
                 getPlatforms: action.payload,
             };
 
-        case CLEAR_STATE:
+        case CLEAR_FOUND_GAMES:
             return{
                 ...state,
                 foundGames: [],
@@ -117,23 +111,30 @@ const reducer = (state = initialState, action) => {
 
         case FILTER_BY_GENRE:
             const genreToFilter = action.payload;
-            const allGamesGenreCopy = [...state.filterGames];
+            const allGamesGenreCopy = [...state.allGames];
         
-            // If the selected genre is empty, show all games
             if (!genreToFilter) {
                 return {
                     ...state,
-                    filterGames: allGamesGenreCopy,
+                    filterGames: state.allGames,
                 };
             }
-        
-            // Filter games by the selected genre
-            const gamesFilteredByGenre = allGamesGenreCopy.filter(game => game.genres.includes(genreToFilter));
-        
-            return {
-                ...state,
-                filterGames: gamesFilteredByGenre,
-            };
+            
+            if (state.foundGames.length > 0) {
+                const gamesFilteredByGenre = state.foundGames.filter(game => game.genres.includes(genreToFilter));
+                return {
+                    ...state,
+                    filterGames: gamesFilteredByGenre,
+                }
+            } else {
+            
+                const gamesFilteredByGenre = allGamesGenreCopy.filter(game => game.genres.includes(genreToFilter));
+                return {
+                    ...state,
+                    filterGames: gamesFilteredByGenre,
+                };
+            }
+
 
         case SORT_BY_RATING:
             const allGamesCopy = [...state.filterGames];

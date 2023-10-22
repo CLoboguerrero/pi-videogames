@@ -3,7 +3,7 @@ import { React } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { getGame, clearState } from '../../redux/actions';
+import { getGame } from '../../redux/actions';
 import Loading from '../Loading/Loading';
 
 function Search () {

@@ -1,7 +1,10 @@
 .landing-page{
-    margin-left: -510px;
+    /* margin-left: -510px;
     margin-top: -415px;
-    padding-right: 680px;
+    padding-right: 680px; */
+    position:absolute;
+    left: 0;
+    margin-left: 15px;
     animation: fadeIn 2s;
 }
 

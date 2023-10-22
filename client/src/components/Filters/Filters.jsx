@@ -38,8 +38,8 @@ const Filters = () => {
 
     const handleReset = () => {
         setSelectedGenre('');
-        setSelectedRating('');
-        setSelectedName('');
+        setSelectedRating('-');
+        setSelectedName('-');
         dispatch(filterOrigin('showAll'));
     };
 
@@ -67,7 +67,7 @@ const Filters = () => {
             <div className="rating-sort">
                     <h2 className="rating-title">Sort By Rating:</h2>
                     <select name="rating" onChange={handleSelectRating}>
-                        <option value="">Rating:</option>
+                        <option value="">-</option>
                         <option value="D">Higher rating</option>
                         <option value="A">Lower Rating</option>
                     </select>
@@ -76,7 +76,7 @@ const Filters = () => {
             <div className="name-sort">
                     <h2 className="name-title">Sort By Name:</h2>
                     <select name="name" onChange={handleSelectName}>
-                        <option value="">Name:</option>
+                        <option value="">-</option>
                         <option value="A">Ascending</option>
                         <option value="D">Descending</option>
                     </select>

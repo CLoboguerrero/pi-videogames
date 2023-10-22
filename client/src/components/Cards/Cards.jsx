@@ -2,7 +2,7 @@ import './Cards.modules.css'
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllGames, getGenres, getPlatforms, clearState } from '../../redux/actions';
+import { getAllGames, getGenres, getPlatforms, clearFoundGames } from '../../redux/actions';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import Filters from '../Filters/Filters';
@@ -12,6 +12,7 @@ import BackgroundMain from '../Backgrounds/BackgroundMain';
 
 function Cards() {
     const dispatch = useDispatch();
+    const allGames = useSelector((state) => state.allGames);
     const displayGames = useSelector((state) => state.filterGames);
     const displaySearchGames = useSelector((state) => state.foundGames);
     const genresList = useSelector((state) => state.getGenres);
@@ -30,7 +31,7 @@ function Cards() {
 
 
     useEffect(() => {
-        if(displayGames.length === 0) {
+        if(allGames.length === 0) {
             dispatch(getAllGames());
         }
         if(genresList.length === 0 && platformsList.length === 0){
@@ -40,7 +41,7 @@ function Cards() {
     },[dispatch]);
 
     const handleGoBack = () => {
-        dispatch(clearState());
+        dispatch(clearFoundGames());
         setCurrentPage(1);
     }
     
@@ -53,7 +54,7 @@ function Cards() {
             <br />
             <br />
             {
-            displayGames.length >= 1 && displaySearchGames.length === 0 
+            displaySearchGames.length === 0 && allGames.length != 0
             ?   <div className='all-games'>
                     <h1>Videogames List:</h1>
                     <Filters />
@@ -64,14 +65,22 @@ function Cards() {
                     />
                 </div>
                 
-                : displaySearchGames.length > 0 && displaySearchGames.length <= 15
-                ?   <div className='search-results'> 
+            : displaySearchGames.length > 0 && displaySearchGames.length <= 15
+            ?   <div className='search-results'> 
                     <h1>Search Results:</h1>
                     <Filters />
                     <button onClick={handleGoBack}>Go Back to Games List</button>
                 </div>
             
             : <Loading />
+        }
+
+        {
+            displayGames.length === 0
+            ? <div>
+                <h2>There are no games with the filter criteria!</h2>
+            </div>
+            : null
         }       
 
             <div className='cards-container'>
