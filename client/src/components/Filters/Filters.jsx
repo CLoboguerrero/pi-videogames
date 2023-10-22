@@ -43,6 +43,7 @@ const Filters = () => {
     const handleReset = () => {
         setFieldsKey((prevKey) => prevKey + 1);
         setSelectedGenre('');
+        setActiveButton(1);
         dispatch(filterOrigin('showAll'));
     };
 

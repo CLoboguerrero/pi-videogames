@@ -1,3 +1,4 @@
+import './Pagination.modules.css';
 import { useState } from "react";
 
 function Pagination ({ currentPage, totalPages, onPageChange }) {
@@ -8,22 +9,23 @@ function Pagination ({ currentPage, totalPages, onPageChange }) {
 
     return(
         <div className="pagination-buttons">
-            <button
+            <button id='pagination-buttons'
                 onClick={() => handlePageChange(1)}
-                disabled={currentPage === 1}>&lt;&lt;</button>
+                disabled={currentPage === 1}>First &lt;&lt;</button>
 
-            <button
+            <button id='pagination-buttons'
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}>&lt; Previous</button>
 
-            <span>{`Page ${currentPage} of ${totalPages}`}</span>
+            <span id='page-number'>{`Page ${currentPage} of ${totalPages}`}</span>
 
-            <button onClick={() => handlePageChange(currentPage + 1)}
+            <button id='pagination-buttons'
+                onClick={() => handlePageChange(currentPage + 1)}
                 disabled = {currentPage === totalPages}>Next  &gt;</button>
 
-            <button
+            <button id='pagination-buttons'
                 onClick={() => handlePageChange(totalPages)}
-                disabled = {currentPage === totalPages}>&gt;&gt;</button>
+                disabled = {currentPage === totalPages}>Last &gt;&gt;</button>
         </div>
     )
 }

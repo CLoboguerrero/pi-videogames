@@ -66,7 +66,7 @@ function Cards() {
             ?   <div className='search-results'> 
                     <h1>Search Results:</h1>
                     <Filters />
-                    <button onClick={handleGoBack}>Go Back to Games List</button>
+                    <button id='pagination-buttons' onClick={handleGoBack}>Go Back to Games List</button>
                 </div>
             
             : <Loading />

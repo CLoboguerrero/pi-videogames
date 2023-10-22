@@ -1,0 +1,11 @@
+#pagination-buttons {
+    background-color: #332974;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: 700;
+}
+
+#page-number {
+    font-size: 1.2em;
+    font-weight: 500;
+}
