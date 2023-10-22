@@ -7,14 +7,26 @@ const Filters = () => {
     
     const dispatch = useDispatch();
     const genresMenu = useSelector(state => state.getGenres);
+    //const allGames = useSelector(state => state.allGames);
+    //const filterGames = useSelector(state => state.filterGames);
+
  
     const [fieldsKey, setFieldsKey] = useState(0);
     const [selectedGenre, setSelectedGenre] = useState('');
+    const [activeButton, setActiveButton] = useState(null)
+
+    //const gamesSource = filterGames.some((game) => isNaN(game.id)); 
+    //console.log(gamesSource);
     
-    const handleFilter = (event) => {
-        dispatch(filterOrigin(event.target.dataset.filter));
+    // const handleFilter = (event) => {
+    //     dispatch(filterOrigin(event.target.dataset.filter));
+    // }
+    
+    const handleButtonClick = (buttonIndex, filter ) => {
+        setActiveButton(buttonIndex);
+        dispatch(filterOrigin(filter));
     }
-    
+
     const handleSelectRating = (event) => {
         dispatch(sortGamesByRating(event.target.value));
     }
@@ -49,15 +61,15 @@ const Filters = () => {
                     <h2 className='origin-title'>Display Games From:</h2>
                 </div>
                 <div className='select-buttons-container'>
-                    <h3 className='select-buttons' data-filter='showAll' onClick={handleFilter}>All Games</h3>
-                    <h3 className='select-buttons' data-filter='gamesInDb' onClick={handleFilter}>Games in DB</h3>
-                    <h3 className='select-buttons' data-filter='gamesInApi' onClick={handleFilter}>Games in API</h3>
+                    <h3 className={`select-buttons ${activeButton === 1 ? 'active' : ''}`} onClick={() => handleButtonClick(1, 'showAll')}>All Games</h3>
+                    <h3 className={`select-buttons ${activeButton === 2 ? 'active' : ''}`} onClick={() => handleButtonClick(2, 'gamesInDb')}>Games in DB</h3>
+                    <h3 className={`select-buttons ${activeButton === 3 ? 'active' : ''}`} onClick={() => handleButtonClick(3, 'gamesInApi')}>Games in API</h3>
                 </div>
             </div>
 
             <div className='rating-sort'>
                 <h2 className='rating-title'>Sort By Rating:</h2>
-                <select name='rating' key={fieldsKey} onChange={handleSelectRating}>
+                <select id='filter-select' name='rating' key={fieldsKey} onChange={handleSelectRating}>
                     <option value=''>-</option>
                     <option value='D'>Higher Rating</option>
                     <option value='A'>Lower Rating</option>
@@ -66,7 +78,7 @@ const Filters = () => {
 
             <div className='name-sort'>
                 <h2 className='name-title'>Sort By Name:</h2>
-                <select name='name' key={fieldsKey} onChange={handleSelectName}>
+                <select id='filter-select' name='name' key={fieldsKey} onChange={handleSelectName}>
                     <option value=''>-</option>
                     <option value='A'>Descending - A to Z</option>
                     <option value='D'>Ascending - Z to A</option>
@@ -75,7 +87,7 @@ const Filters = () => {
 
             <div className='genres-list'>
                 <h2 className='genre-title'>Filter by Genre:</h2>
-                <select name='genres' value={selectedGenre} onChange={handleSelectChange}>
+                <select id='filter-select' name='genres' value={selectedGenre} onChange={handleSelectChange}>
                     <option value=''>-</option>
                     {sortedGenres.map((genre) => (
                         <option key={genre} value={genre}>
@@ -85,8 +97,8 @@ const Filters = () => {
                 </select>
             </div>
             
-            <div className='reset-button'>
-                <button onClick={handleReset}>Reset Filters</button>
+            <div className='reset-button-container'>
+                <h3 className='reset-button'onClick={handleReset}>Reset Filters</h3>
             </div>
         </div>
     )

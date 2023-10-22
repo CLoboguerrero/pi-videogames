@@ -114,7 +114,6 @@ const reducer = (state = initialState, action) => {
             if (!genreToFilter) {
                 return {
                     ...state,
-                    filterGames: state.allGames,
                 };
             }
             
@@ -125,7 +124,6 @@ const reducer = (state = initialState, action) => {
                     filterGames: gamesFilteredByGenre,
                 }
             } else {
-            
                 const gamesFilteredByGenre = state.allGames.filter(game => game.genres.includes(genreToFilter));
                 return {
                     ...state,
