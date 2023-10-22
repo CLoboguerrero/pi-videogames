@@ -10,20 +10,18 @@ const Filters = () => {
     const genresMenu = useSelector(state => state.getGenres);
  
     const [selectedGenre, setSelectedGenre] = useState('');
-    const [selectedRating, setSelectedRating] = useState('');
-    const [selectedName, setSelectedName] = useState('');
-    const [aux, setAux] = useState(false);
+    const [selectedRating, setSelectedRating] = useState('-');
+    const [selectedName, setSelectedName] = useState('-');
+    
     
     const handleSelectRating = (event) => {
         setSelectedRating(event.target.value);
         dispatch(sortGamesByRating(event.target.value));
-        setAux(true);
     }
     
     const handleSelectName = (event) => {
         setSelectedName(event.target.value);
         dispatch(sortGamesByName(event.target.value));
-        setAux(true);
     }
     
     const handleFilter = (event) => {
@@ -33,7 +31,6 @@ const Filters = () => {
     const handleSelectChange = (event) => {
         setSelectedGenre(event.target.value);
         dispatch(filterByGenre(event.target.value));
-        setAux(true);
     }
 
     const handleReset = () => {
@@ -85,7 +82,7 @@ const Filters = () => {
             <div className='genres-list'>
                 <h2 className='genre-title'>Filter by Genre:</h2>
                 <select name='genres' value={selectedGenre} onChange={handleSelectChange}>
-                    <option value="">Filter by Genre:</option>
+                    <option value="">-</option>
                     {sortedGenres.map((genre) => (
                         <option key={genre} value={genre}>
                             {genre}

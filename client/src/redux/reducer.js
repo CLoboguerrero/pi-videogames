@@ -111,7 +111,6 @@ const reducer = (state = initialState, action) => {
 
         case FILTER_BY_GENRE:
             const genreToFilter = action.payload;
-            const allGamesGenreCopy = [...state.allGames];
         
             if (!genreToFilter) {
                 return {
@@ -128,7 +127,7 @@ const reducer = (state = initialState, action) => {
                 }
             } else {
             
-                const gamesFilteredByGenre = allGamesGenreCopy.filter(game => game.genres.includes(genreToFilter));
+                const gamesFilteredByGenre = state.allGames.filter(game => game.genres.includes(genreToFilter));
                 return {
                     ...state,
                     filterGames: gamesFilteredByGenre,
