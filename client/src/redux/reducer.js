@@ -3,11 +3,10 @@ import { GET_ALL_GAMES, GET_GAME_BY_NAME, GET_GAME_DETAILS, GET_GENRES, GET_PLAT
 const initialState = {
     allGames: [],
     foundGames: [],
+    filterGames: [],
     gameDetails: [],
     getGenres: [],
     getPlatforms: [],
-    filterGames: [],
-    sortGames: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -137,13 +136,14 @@ const reducer = (state = initialState, action) => {
 
         case SORT_BY_RATING:
             const allGamesCopy = [...state.filterGames];
-            
             return{
                 ...state,
                 filterGames:
                     action.payload === 'A'
                     ? allGamesCopy.sort((a, b) => a.rating - b.rating)
-                    : allGamesCopy.sort((a, b) => b.rating - a.rating)
+                    : action.payload === 'D' 
+                    ? allGamesCopy.sort((a, b) => b.rating - a.rating)
+                    : allGamesCopy
             };
 
         case SORT_BY_NAME:
@@ -155,10 +155,14 @@ const reducer = (state = initialState, action) => {
                     const nameB = String(b.name).toUpperCase();
 
                     if (nameA < nameB) {
-                        return action.payload === 'A' ? -1 : 1;
+                        return action.payload === 'A' 
+                        ? -1 
+                        : 1;
                     }
                     if (nameA > nameB) {
-                        return action.payload === 'A' ? 1 : -1;
+                        return action.payload === 'D' 
+                        ? -1 
+                        : 1;
                     }
                     return 0;
                 }),

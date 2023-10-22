@@ -6,26 +6,21 @@ import { filterOrigin, filterByGenre, sortGamesByRating, sortGamesByName } from 
 const Filters = () => {
     
     const dispatch = useDispatch();
-    const filterGames = useSelector(state => state.filterGames);
     const genresMenu = useSelector(state => state.getGenres);
  
+    const [fieldsKey, setFieldsKey] = useState(0);
     const [selectedGenre, setSelectedGenre] = useState('');
-    const [selectedRating, setSelectedRating] = useState('-');
-    const [selectedName, setSelectedName] = useState('-');
     
+    const handleFilter = (event) => {
+        dispatch(filterOrigin(event.target.dataset.filter));
+    }
     
     const handleSelectRating = (event) => {
-        setSelectedRating(event.target.value);
         dispatch(sortGamesByRating(event.target.value));
     }
     
     const handleSelectName = (event) => {
-        setSelectedName(event.target.value);
         dispatch(sortGamesByName(event.target.value));
-    }
-    
-    const handleFilter = (event) => {
-        dispatch(filterOrigin(event.target.dataset.filter));
     }
     
     const handleSelectChange = (event) => {
@@ -34,9 +29,8 @@ const Filters = () => {
     }
 
     const handleReset = () => {
+        setFieldsKey((prevKey) => prevKey + 1);
         setSelectedGenre('');
-        setSelectedRating('-');
-        setSelectedName('-');
         dispatch(filterOrigin('showAll'));
     };
 
@@ -61,28 +55,28 @@ const Filters = () => {
                 </div>
             </div>
 
-            <div className="rating-sort">
-                    <h2 className="rating-title">Sort By Rating:</h2>
-                    <select name="rating" onChange={handleSelectRating}>
-                        <option value="">-</option>
-                        <option value="D">Higher rating</option>
-                        <option value="A">Lower Rating</option>
-                    </select>
+            <div className='rating-sort'>
+                <h2 className='rating-title'>Sort By Rating:</h2>
+                <select name='rating' key={fieldsKey} onChange={handleSelectRating}>
+                    <option value=''>-</option>
+                    <option value='D'>Higher Rating</option>
+                    <option value='A'>Lower Rating</option>
+                </select>
             </div>
 
-            <div className="name-sort">
-                    <h2 className="name-title">Sort By Name:</h2>
-                    <select name="name" onChange={handleSelectName}>
-                        <option value="">-</option>
-                        <option value="A">Ascending</option>
-                        <option value="D">Descending</option>
-                    </select>
+            <div className='name-sort'>
+                <h2 className='name-title'>Sort By Name:</h2>
+                <select name='name' key={fieldsKey} onChange={handleSelectName}>
+                    <option value=''>-</option>
+                    <option value='A'>Descending - A to Z</option>
+                    <option value='D'>Ascending - Z to A</option>
+                </select>
             </div>
 
             <div className='genres-list'>
                 <h2 className='genre-title'>Filter by Genre:</h2>
                 <select name='genres' value={selectedGenre} onChange={handleSelectChange}>
-                    <option value="">-</option>
+                    <option value=''>-</option>
                     {sortedGenres.map((genre) => (
                         <option key={genre} value={genre}>
                             {genre}
@@ -90,8 +84,10 @@ const Filters = () => {
                     ))}
                 </select>
             </div>
-
-            <button onClick={handleReset}>Reset Filters</button>
+            
+            <div className='reset-button'>
+                <button onClick={handleReset}>Reset Filters</button>
+            </div>
         </div>
     )
 }

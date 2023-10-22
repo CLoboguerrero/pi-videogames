@@ -1,7 +1,7 @@
 import './Form.modules.css';
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { postGame, getGenres, getPlatforms, clearAllGames } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { postGame, getGenres, getPlatforms, clearAllGames, clearFoundGames } from '../../redux/actions';
 import { uploadImage } from './cloudinary';
 import validate from './validations';
 import GenresMenu from './GenresMenu';
@@ -11,10 +11,15 @@ const createVideogame = () => {
     const dispatch = useDispatch();
     const fileInput = useRef(null);
 
-    // useEffect(() => {
-    //     dispatch(getPlatforms());
-    //     dispatch(getGenres());
-    // },[dispatch])
+    const genresList = useSelector((state) => state.getGenres);
+    const platformsList = useSelector((state) => state.getPlatforms);
+
+    useEffect(() => {
+        if(genresList.length === 0 && platformsList.length === 0){
+            dispatch(getGenres());
+            dispatch(getPlatforms());
+        }
+    },[dispatch])
 
     const [formKey, setFormKey] = useState(0); 
 
@@ -97,6 +102,7 @@ const createVideogame = () => {
         if (isFormValid()) {
 
             dispatch(postGame(formData));
+            dispatch(clearFoundGames());
             dispatch(clearAllGames());
             setConfirmationMessage('Form Submitted successfully!');
 
@@ -110,7 +116,7 @@ const createVideogame = () => {
                 genres: []
             });
 
-            setFormKey((prevKey) => prevKey + 1)
+            setFormKey((prevKey) => prevKey + 1);
 
             setErrors({
                 name: '',

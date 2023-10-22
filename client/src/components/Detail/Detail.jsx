@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameDetails, clearDetails } from '../../redux/actions';
+import Loading from '../Loading/Loading';
 
 function Detail () {
     const { id } = useParams();
@@ -38,7 +39,7 @@ function Detail () {
         <div>
             {
              loading 
-             ? <h2>Loading Game Info...</h2>
+             ? <Loading />
              
              : <div>
                  <img className='img-card' src={image} alt="videogame-image" />
