@@ -53,7 +53,10 @@ h3.select-buttons.active {
     border: 2px solid #3c0947;
 }
 
-#filter-select {
+#filter-select-genre,
+#filter-select-name,
+#filter-select-rating
+ {
     border-radius: 7px;
     height: 37px;
     width: 165px;

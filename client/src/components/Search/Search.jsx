@@ -46,6 +46,7 @@ function Search () {
         <div className='nav-container'>
             <div className='nav-elements'>
                 <input
+                    id='search-field'
                     className='input-field' 
                     type="search"
                     placeholder='Search Videogame'

@@ -70,7 +70,7 @@ const Filters = () => {
 
             <div className='rating-sort'>
                 <h2 className='rating-title'>Sort By Rating:</h2>
-                <select id='filter-select' name='rating' key={fieldsKey} onChange={handleSelectRating}>
+                <select id='filter-select-rating' name='rating' key={fieldsKey} onChange={handleSelectRating}>
                     <option value=''>-</option>
                     <option value='D'>Higher Rating</option>
                     <option value='A'>Lower Rating</option>
@@ -79,7 +79,7 @@ const Filters = () => {
 
             <div className='name-sort'>
                 <h2 className='name-title'>Sort By Name:</h2>
-                <select id='filter-select' name='name' key={fieldsKey} onChange={handleSelectName}>
+                <select id='filter-select-name' name='name' key={fieldsKey} onChange={handleSelectName}>
                     <option value=''>-</option>
                     <option value='A'>Descending - A to Z</option>
                     <option value='D'>Ascending - Z to A</option>
@@ -88,7 +88,7 @@ const Filters = () => {
 
             <div className='genres-list'>
                 <h2 className='genre-title'>Filter by Genre:</h2>
-                <select id='filter-select' name='genres' value={selectedGenre} onChange={handleSelectChange}>
+                <select id='filter-select-genre' name='genres' value={selectedGenre} onChange={handleSelectChange}>
                     <option value=''>-</option>
                     {sortedGenres.map((genre) => (
                         <option key={genre} value={genre}>

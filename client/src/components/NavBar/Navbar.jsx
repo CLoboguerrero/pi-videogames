@@ -11,9 +11,7 @@ function NavBar() {
                 <img id='app-logo' src={Logo} alt=''/>
                 <Link to = '/home'>Home</Link>
                 <Link to = '/form'>Custom Games</Link>
-                <Link to = '/test'>Filters</Link>
                 <p>Your Games Library</p>
-                <p>What?</p>
             </div>
             <Search/>
         </nav>

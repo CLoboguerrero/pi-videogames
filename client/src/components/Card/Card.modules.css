@@ -27,20 +27,13 @@
     transition-duration: .2s;
 }
 
-.game-img-container {
-    width: 330px;
-}
-
 .game-name{
     text-transform: uppercase;
     color: #00efff;
 }
 
-.characterSpecs {
-    margin-top: 0px;
-    font-size: 21px;
-    font-weight: 100;
-    margin-bottom: 12px;
+.game-img-container {
+    width: 330px;
 }
 
 .img-card{
@@ -50,16 +43,33 @@
     border-top-right-radius: 35px;
 }
 
-#close {
-    background-color: none;
-    margin-left: 280px;
+.game-genres {
+    display: flex;
+}
+
+.genre-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.genre-icon {
+    width: 45px;
+}
+
+.genre-name {
+    margin-left: 7.5px;
+    margin-right: 7.5px;
 }
 
 .bottom-buttons {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    
+}
+
+.game-rating {
+    color: #fcd53f;
 }
 
 .card-details {
@@ -105,3 +115,93 @@
     background-color: #141414be;
     cursor: pointer;
 }
+
+
+
+
+/* .game-genres{
+    display: flex;
+}
+.genre-icon {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+} */
+
+/* .action {
+    background-image: url('../../assets/icons/action.png');
+} */
+
+/* .adventure {
+    background-image: url('../../assets/icons/adventure.png');
+}
+
+.arcade {
+    background-image: url('../../assets/icons/arcade.png');
+}
+
+.board {
+    background-image: url('../../assets/icons/board.png');
+}
+
+.card {
+    background-image: url('../../assets/icons/card.png');
+}
+
+.casual {
+    background-image: url('../../assets/icons/casual.png');
+}
+
+.educational {
+    background-image: url('../../assets/icons/educational.png');
+}
+
+.family {
+    background-image: url('../../assets/icons/family.png');
+}
+
+.fighting {
+    background-image: url('../../assets/icons/fighting.png');
+}
+
+.indie {
+    background-image: url('../../assets/icons/indie.png');
+}
+
+.multiplayer {
+    background-image: url('../../assets/icons/multiplayer.png');
+}
+
+.platform {
+    background-image: url('../../assets/icons/platform.png');
+}
+
+.puzzle {
+    background-image: url('../../assets/icons/puzzle.png');
+}
+
+.racing {
+    background-image: url('../../assets/icons/racing.png');
+}
+
+.rpg {
+    background-image: url('../../assets/icons/rpg.png');
+}
+
+.shooter {
+    background-image: url('../../assets/icons/shooter.png');
+}
+
+.simulation {
+    background-image: url('../../assets/icons/simulation.png');
+}
+
+.sports {
+    background-image: url('../../assets/icons/sports.png');
+}
+
+.strategy {
+    background-image: url('../../assets/icons/strategy.png');
+} */
