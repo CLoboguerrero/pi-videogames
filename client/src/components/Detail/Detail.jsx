@@ -31,8 +31,8 @@ function Detail () {
     },[]);
 
     const handleBack = () => {
-        navigate(-1);
         dispatch(clearDetails());
+        navigate(-1);
     }
 
     return (
@@ -42,15 +42,16 @@ function Detail () {
              ? <Loading />
              
              : <div>
-                 <img className='img-card' src={image} alt="videogame-image" />
-                 <h2><span style={{ fontWeight: 'bold' }}>Name: </span>{name}</h2>
-                 <h2><span style={{ fontWeight: 'bold' }}>Platforms: </span>{platforms}</h2>
-                 <h2><span style={{ fontWeight: 'bold' }}>Description: </span>{description}</h2>
-                 <h2><span style={{ fontWeight: 'bold' }}>Release Date: </span>{released}</h2>
-                 <h2><span style={{ fontWeight: 'bold' }}>Rating: </span>{rating}</h2>
-                 <h2><span style={{ fontWeight: 'bold' }}>Genres: </span>{genres}</h2>
-     
-                 <button onClick={handleBack}>Go back</button> 
+                <img className='detail-img' src={image} alt="videogame-image" />
+                <h1><span style={{ fontWeight: 'bold' }}></span>{name}</h1>
+                <h2><span style={{ fontWeight: 'bold' }}>Platforms: </span>{platforms && platforms.length > 0 ? platforms.join(' || ') : 'N/A'}</h2>
+                <div 
+                className='detail-description' dangerouslySetInnerHTML={{ __html: description }}>
+                </div>
+                <h2><span style={{ fontWeight: 'bold' }}>Release Date: </span>{released}</h2>
+                <h2><span style={{ fontWeight: 'bold' }}>Rating: </span>{rating}</h2>
+                <h2><span style={{ fontWeight: 'bold' }}>Genres: </span>{genres && genres.length > 0 ? genres.join(' ') : 'N/A'}</h2>
+                <button onClick={handleBack}>Go back</button> 
              </div>
             }
         </div>
