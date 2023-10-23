@@ -67,6 +67,7 @@ function Card ({ id, name, image, rating, genres }) {
         <div className='card'>
             <div className='game-img-container'>
                 <img className='img-card' src={image} alt='game-image' />
+                <h3 className='game-rating'><span>{rating}</span>⭐️</h3>
             </div>
 
             <h2 className='game-name'>{name}</h2>
@@ -75,7 +76,6 @@ function Card ({ id, name, image, rating, genres }) {
                 {getGenreIcons()}
             </div>
 
-            <h2 className='game-rating'>Rating: <span>{rating}</span>⭐️</h2>
 
             <div className='bottom-buttons'>
                 <Link to={`/detail/${id}`} >

@@ -15,9 +15,11 @@ const createVideogame = () => {
     const platformsList = useSelector((state) => state.getPlatforms);
 
     useEffect(() => {
-        if(genresList.length === 0 && platformsList.length === 0){
-            dispatch(getGenres());
+        if(platformsList.length === 0){
             dispatch(getPlatforms());
+        } 
+        if (genresList.length === 0) {
+            dispatch(getGenres());
         }
     },[dispatch])
 

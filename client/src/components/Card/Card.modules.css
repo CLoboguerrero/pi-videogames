@@ -45,6 +45,9 @@
 
 .game-genres {
     display: flex;
+    justify-content:center ;
+    flex-wrap: wrap;
+    width:300px;
 }
 
 .genre-container {
@@ -68,8 +71,46 @@
     align-items: center;
 }
 
-.game-rating {
+/* .game-rating {
     color: #fcd53f;
+} */
+
+/* .game-rating {
+    color: gold;
+    position: absolute;
+    margin-top: 161px;
+    padding-bottom: 5px;
+    margin-left: 1px;
+    padding-right: 5px;
+    padding-left: 244px;
+    text-shadow: 2px 4px 3px #000000c2;
+    background-color: #0000009c;
+} */
+
+/* .game-rating {
+    color: gold;
+    position: relative;
+    margin-top: -47px;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 245px;
+    text-shadow: 2px 4px 3px #000000c2;
+    background-color: #0000009c;
+    max-width: 300px;
+} */
+
+.game-rating {
+    color: gold;
+    position: relative;
+    margin-top: -34px;
+    margin-bottom: -13px;
+    margin-left: 0px;
+    padding-left: 245px;
+    text-shadow: 2px 4px 3px #000000c2;
+    background-color: #0000009c;
+    max-width: 300px;
 }
 
 .card-details {
