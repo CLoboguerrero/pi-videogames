@@ -25,6 +25,11 @@
     animation-delay: 2s;
 }
 
+#enter-button {
+    background-color: #3c0947d4;
+    font-size: 1.2em;
+}
+
 @keyframes fadeInLanding {
     from {
         opacity: 0;

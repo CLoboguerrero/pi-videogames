@@ -15,7 +15,7 @@ function Landing () {
             <img src={Logo} className='site-logo' alt='site-logo' />
             <br />
             <BackgroundLanding />
-            <button className='enter-button' onClick={() => handleClick()}>Enter Videogames App</button>
+            <button id='enter-button' className='enter-button' onClick={() => handleClick()}>Enter Videogames App</button>
         </div>
     );
 }

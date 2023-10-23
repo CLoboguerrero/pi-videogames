@@ -28,7 +28,7 @@ h3.select-buttons {
     padding-right: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border: 2px solid #5d00cd;
+    border: 2px solid #3c0947;
     border-radius: 10px;
     background-color: #000000a1;
     user-select: none;
@@ -40,8 +40,8 @@ h3.select-buttons {
 }
 
 h3.select-buttons:hover {
-    background-color: #5d00cd;
-    border: 2px solid #5d00cd;
+    background-color: #3c0947;
+    border: 2px solid #3c0947;
 }
 
 h3.select-buttons.active {
@@ -49,8 +49,8 @@ h3.select-buttons.active {
     padding-right: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #5d00cd;
-    border: 2px solid #5d00cd;
+    background-color: #3c0947;
+    border: 2px solid #3c0947;
 }
 
 #filter-select {
