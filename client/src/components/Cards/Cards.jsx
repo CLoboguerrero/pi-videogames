@@ -23,11 +23,6 @@ function Cards() {
     const endIndex = startIndex + 15;
     const gamesPaginated = displayGames.slice(startIndex, endIndex)
     
-    // let stateToShow = gamesPaginated;
-
-    // if (displaySearchGames.length > 0) stateToShow = displaySearchGames;
-    // else stateToShow = gamesPaginated;
-
     useEffect(() => {
         if(allGames.length === 0) {
             dispatch(getAllGames());

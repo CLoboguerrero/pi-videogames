@@ -1,0 +1,46 @@
+div.game-genres.route1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 300px;
+    flex-direction: row;
+}
+
+.route1 .genre-container  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.route1 .genre-icon {
+    width: 40px;
+}
+
+.route1 .genre-name {
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+}
+
+
+div.game-genres.route2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* width: 300px; */
+    /* flex-direction: row; */
+}
+
+.route2 .genre-container  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .route2 .genre-icon {
+    width: 40px;
+} */
+
+.route2 .genre-name {
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+}
