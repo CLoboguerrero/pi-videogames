@@ -42,8 +42,8 @@ const validate = (formData) => {
         errors.released = 'Please provide a game release date';
     }
 
-    if (formData.rating < 1 || formData.rating > 5) {
-        errors.rating = 'Rating must be between 1 and 5';
+    if (formData.rating < 0 || formData.rating > 5) {
+        errors.rating = 'Rating must be between 0 and 5';
     }
 
     if (isNaN(parseInt(formData.rating))) {

@@ -6,6 +6,8 @@ import { uploadImage } from './cloudinary';
 import validate from './validations';
 import GenresMenu from './GenresMenu';
 import PlatformsMenu from './PlatformsMenu';
+import BackgroundMain from '../Backgrounds/BackgroundMain';
+
 
 const createVideogame = () => {
     const dispatch = useDispatch();
@@ -135,11 +137,16 @@ const createVideogame = () => {
 
 
     return (
-        <div>
+        <div className='form-container'>
             {console.log(formData)}
+            <h1>Create new videogame</h1>
+            <span>Please fill in the following info:</span>
+            <br />
+            <span>*Required fields</span>
+
             <form className='videogame-form' onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='name'>Name: </label>
+                <div className='name-input'>
+                    <label htmlFor='name'>*Videogame Name: </label>
                     <input
                         id='name'
                         name='name' 
@@ -151,8 +158,54 @@ const createVideogame = () => {
                 </div>
                 <br />
 
-                <div>
-                    <label htmlFor='description'>Description: </label>
+                <div className='form-first-group'>
+                    <div className='release-input'>
+                        <label htmlFor='released'>*Release Date: </label>
+                        <input
+                            id='released'
+                            name='released' 
+                            type='text'
+                            placeholder='YYYY-MM-DD'
+                            value={formData.released}
+                            onChange={handleChange}
+                        />
+                        {errors.released && <span>{errors.released}</span>}
+                    </div>
+                    <br />
+
+                    <div className='rating-input'>
+                        <label htmlFor='rating'>*Rating: </label>
+                        <input
+                            id='rating'
+                            name='rating' 
+                            type='text'
+                            placeholder='Between 0 and 5 decimals allowed'
+                            value={formData.rating}
+                            onChange={handleChange}
+                        />
+                        {errors.rating && <span>{errors.rating}</span>}
+                    </div>
+                    <br />
+                </div>
+
+                <div className='form-second-group'>
+                    <div className='platforms-input'>
+                        <label htmlFor='platforms'>*Platforms: </label>
+                        <PlatformsMenu key={formKey} onChange={handleChange} />
+                        {errors.platforms && <span>{errors.platforms}</span>}
+                    </div>
+                    <br />
+
+                    <div className='genres-input'>
+                        <label htmlFor='genres'>*Genres: </label>
+                        <GenresMenu key={formKey} onChange={handleChange} />
+                        {errors.genres && <span>{errors.genres}</span>}
+                    </div>
+                    <br />
+                </div>
+
+                <div className='description-input'>
+                    <label htmlFor='description'>*Description: </label>
                     <input
                         id='description'
                         name='description' 
@@ -165,14 +218,7 @@ const createVideogame = () => {
                 <br />
 
                 <div>
-                    <label htmlFor='platforms'>Platforms: </label>
-                    <PlatformsMenu key={formKey} onChange={handleChange} />
-                    {errors.platforms && <span>{errors.platforms}</span>}
-                </div>
-                <br />
-
-                <div>
-                    <label htmlFor='image'>Image: </label>
+                    <label htmlFor='image'>*Image: </label>
                     <input
                         id='image'
                         name='image' 
@@ -184,46 +230,14 @@ const createVideogame = () => {
                 </div>
                 <br />
 
-                <div>
-                    <label htmlFor='released'>Released Date: </label>
-                    <input
-                        id='released'
-                        name='released' 
-                        type='text'
-                        placeholder='YYYY-MM-DD'
-                        value={formData.released}
-                        onChange={handleChange}
-                    />
-                    {errors.released && <span>{errors.released}</span>}
-                </div>
-                <br />
-
-                <div>
-                    <label htmlFor='rating'>Rating: </label>
-                    <input
-                        id='rating'
-                        name='rating' 
-                        type='text'
-                        value={formData.rating}
-                        onChange={handleChange}
-                    />
-                    {errors.rating && <span>{errors.rating}</span>}
-                </div>
-                <br />
-
-                <div>
-                    <label htmlFor='genres'>Genres: </label>
-                    <GenresMenu key={formKey} onChange={handleChange} />
-                    {errors.genres && <span>{errors.genres}</span>}
-                </div>
-                <br />
-
                 <button
                     className={isFormValid() ? 'enabled-button' : 'disabled-button'}
                     disabled={!isFormValid()}>Submit
                 </button>
             </form>
             {submitted && <div className='confirmation-message'>{confirmationMessage}</div>}
+
+            <BackgroundMain />
         </div>
     )
 }

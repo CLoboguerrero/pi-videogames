@@ -1,5 +1,4 @@
 import './Pagination.modules.css';
-import { useState } from "react";
 
 function Pagination ({ currentPage, totalPages, onPageChange }) {
 

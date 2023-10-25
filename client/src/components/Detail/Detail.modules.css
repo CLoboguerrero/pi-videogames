@@ -10,6 +10,7 @@
 
 .top-content{
     font-size: 1.1em;
+    box-shadow: 11px 13px 8px 0px #000000a8;
 }
 
 .game-image-container {
@@ -26,7 +27,6 @@
 }
 
 .top-content h1 {
-    /* background: linear-gradient(to right, #301236cc 0%, #180f2ab9 70%, #000b28aa 100%); */
     background-color: #000719bf;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -40,9 +40,8 @@
 .game-bottom-container {
     margin-top: -10px;
     display: flex;
-    /* background-color: #000000ad; */
     background: linear-gradient(to bottom, #301236 0%, #180f2a 70%, #000b28 100%);
-    /* background: linear-gradient(to bottom, #000b28 0%, #180f2a 70%, #301236 100%); */
+    box-shadow: 11px 13px 8px 0px #000000a8;
 }
 
 .text-details-container {

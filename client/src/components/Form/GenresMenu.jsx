@@ -30,7 +30,7 @@ const GenresMenu = ({ onChange }) => {
     return (
         <div className='list-container'>
             {/* <h2>Select one or more Genres: </h2> */}
-            <select name='genre' value={selectedGenre} onChange={(event) => handleSelectChange(event.target.value)}>
+            <select name='genre' id='genres-select' value={selectedGenre} onChange={(event) => handleSelectChange(event.target.value)}>
                 <option value="">Select one or more Genres:</option>
                 {sortedGenres.map((genres) => (
                     <option key={genres} value={genres}>
