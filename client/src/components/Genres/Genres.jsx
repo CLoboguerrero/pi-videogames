@@ -50,23 +50,23 @@ const genreNameMapping = {
     'Platformer': 'Platform'
 };
 
-function Genres ({ isHomeRoute }) {
-
-    const routeClass = isHomeRoute ? 'route1' : 'route2';
+function Genres ({ genres, isHomeRoute }) {
 
     const gameDetails = useSelector((state) => state.gameDetails);
-    const allGames = useSelector((state) => state.allGames);
-
+    const routeClass = isHomeRoute ? 'route1' : 'route2';
     let genresData = [];
     
     if (Array.isArray(gameDetails.genres)) {
         genresData = gameDetails.genres;
-    } else if (Array.isArray(allGames) && allGames.length > 0) {
-        
-        genresData = allGames[0].genres;
+    } else  if (genres || Array.isArray(genres)) {
+        genresData = genres;
     }
-
+    
     const getGenreIcons = () => {
+
+        if (!genresData) {
+            return null; 
+        }
 
         return genresData.map((genre, index) => {
             const shortGenreName = genreNameMapping[genre] || genre;

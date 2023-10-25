@@ -2,7 +2,7 @@ import './Card.modules.css';
 import { Link } from 'react-router-dom';
 import Genres from '../Genres/Genres';
 
-function Card ({ id, name, image, rating }) {
+function Card ({ id, name, image, rating, genres }) {
 
     return (
         <div className='card'>
@@ -13,7 +13,7 @@ function Card ({ id, name, image, rating }) {
 
             <h2 className='game-name'>{name}</h2>
 
-            <Genres isHomeRoute={true}/>
+            <Genres isHomeRoute={true} genres={genres}/>
             
             <div className='bottom-buttons'>
                 <Link to={`/detail/${id}`} >
