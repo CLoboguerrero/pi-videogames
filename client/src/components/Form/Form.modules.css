@@ -45,6 +45,26 @@
     margin-top: 25px;
 }
 
+.description-input textarea {
+    border: 2px solid white;
+    border-radius: 10px;
+    height: 100px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    transition: border 0.3s ease;
+    text-align: left;
+    white-space: normal;
+    word-break: break-word;
+    overflow: auto;
+    background-color: transparent;
+    font-size: 1.3em;
+
+    &:focus {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
 .release-input,
 .rating-input,
 .platforms-input,
@@ -84,6 +104,23 @@
     box-shadow: 11px 13px 8px 0px #000000a8;
 }
 
+.selected-genres-list span,
+.selected-platforms-list span {
+    color: rgb(255, 255, 255);
+}
+
+.selected-genres-list button,
+.selected-platforms-list button {
+    margin-top: 10px;
+    background-color: #4e00b8;
+    box-shadow: none;
+    padding-top:1px;
+    padding-bottom:1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
 .disabled-button {
     cursor: not-allowed;
     border:none;
@@ -118,54 +155,7 @@
     color: rgb(104, 104, 104);
 }
 
-/* .videogame-form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.videogame-form button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-} */
-
 .confirmation-message {
     margin-top: 20px;
     font-weight: bold;
 }
-
-/* classNames */
-
-/* For the underlined input fields */
-/* .underlined-input {
-    border: none;
-    border-bottom: 2px solid #007bff;
-    background: transparent;
-    width: 100%;
-    padding: 5px;
-    font-size: 16px;
-} */
-
-/* For the enabled and disabled buttons */
-/* .enabled-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.disabled-button {
-    background-color: #ccc;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: not-allowed;
-} */

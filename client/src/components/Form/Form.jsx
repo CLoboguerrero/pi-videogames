@@ -206,7 +206,7 @@ const createVideogame = () => {
 
                 <div className='description-input'>
                     <label htmlFor='description'>*Description: </label>
-                    <input
+                    <textarea
                         id='description'
                         name='description' 
                         type='text'

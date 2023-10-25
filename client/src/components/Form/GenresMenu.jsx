@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { getGenres } from "../../redux/actions";
 
 const GenresMenu = ({ onChange }) => {
 
@@ -29,7 +28,6 @@ const GenresMenu = ({ onChange }) => {
 
     return (
         <div className='list-container'>
-            {/* <h2>Select one or more Genres: </h2> */}
             <select name='genre' id='genres-select' value={selectedGenre} onChange={(event) => handleSelectChange(event.target.value)}>
                 <option value="">- Select one or more Genres -</option>
                 {sortedGenres.map((genres) => (
@@ -39,7 +37,7 @@ const GenresMenu = ({ onChange }) => {
                 ))}
             </select>
 
-            <div>
+            <div className='selected-genres-list'>
                 {selectedGenresList.map((genres) => (
                     <span key={genres}>
                         {genres}

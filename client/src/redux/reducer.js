@@ -130,6 +130,12 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     filterGames: gamesFilteredByGenre,
                 }
+            } else if (state.auxGames.length === 0) {
+                const gamesFilteredByGenre = state.allGames.filter(game => game.genres.includes(genreToFilter));
+                return {
+                    ...state,
+                    filterGames: gamesFilteredByGenre,
+                };
             } else {
                 const gamesFilteredByGenre = state.auxGames.filter(game => game.genres.includes(genreToFilter));
                 return {
