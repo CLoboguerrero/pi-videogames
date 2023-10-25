@@ -30,7 +30,7 @@ const PlatformsMenu = ({ onChange }) => {
         <div className='list-container'>
             {/* <h2>Select one or more Genres: </h2> */}
             <select name='platform' id='platform-select' value={selectedPlatform} onChange={(event) => handleSelectChange(event.target.value)}>
-                <option value="">Select one or more Platforms:</option>
+                <option value="">- Select one or more Platforms -</option>
                 {sortedPlatforms.map((platforms) => (
                     <option key={platforms} value={platforms}>
                         {platforms}

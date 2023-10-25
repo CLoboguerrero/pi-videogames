@@ -4,6 +4,7 @@ const initialState = {
     allGames: [],
     foundGames: [],
     filterGames: [],
+    auxGames: [],
     gameDetails: [],
     getGenres: [],
     getPlatforms: [],
@@ -69,12 +70,14 @@ const reducer = (state = initialState, action) => {
                     return{
                         ...state,
                         filterGames: gamesStoredInDb,
+                        auxGames: gamesStoredInDb
                     }
                 } else {
                     const gamesStoredInDb = state.allGames.filter((game) => isNaN(game.id));
                     return {
                         ...state,
                         filterGames: gamesStoredInDb,
+                        auxGames: gamesStoredInDb
                     };
                 }
 
@@ -83,13 +86,15 @@ const reducer = (state = initialState, action) => {
                     const gamesFromApi = state.foundGames.filter((game) => !isNaN(game.id));
                     return{
                         ...state,
-                        filterGames: gamesFromApi
+                        filterGames: gamesFromApi,
+                        auxGames: gamesFromApi
                     }
                 } else {
                     const gamesFromApi = state.allGames.filter((game) => !isNaN(game.id));
                     return {
                         ...state,
                         filterGames: gamesFromApi,
+                        auxGames: gamesFromApi
                     };
                 }
 
@@ -98,11 +103,13 @@ const reducer = (state = initialState, action) => {
                     return{
                         ...state,
                         filterGames: state.foundGames,
+                        auxGames: state.foundGames
                     }
                 } else {
                     return {
                         ...state,
                         filterGames: state.allGames,
+                        auxGames: state.allGames
                     };
                 }
             }
@@ -118,19 +125,18 @@ const reducer = (state = initialState, action) => {
             }
             
             if (state.foundGames.length > 0) {
-                const gamesFilteredByGenre = state.foundGames.filter(game => game.genres.includes(genreToFilter));
+                const gamesFilteredByGenre = state.auxGames.filter(game => game.genres.includes(genreToFilter));
                 return {
                     ...state,
                     filterGames: gamesFilteredByGenre,
                 }
             } else {
-                const gamesFilteredByGenre = state.allGames.filter(game => game.genres.includes(genreToFilter));
+                const gamesFilteredByGenre = state.auxGames.filter(game => game.genres.includes(genreToFilter));
                 return {
                     ...state,
                     filterGames: gamesFilteredByGenre,
                 };
             }
-
 
         case SORT_BY_RATING:
             const allGamesCopy = [...state.filterGames];

@@ -68,6 +68,7 @@
 .enabled-button{
     border-radius: none;
     border:none;
+    background-color: #cd005a;
 }
 
 #genres-select, 
@@ -86,6 +87,7 @@
 .disabled-button {
     cursor: not-allowed;
     border:none;
+    background-color: #68002d;
 }
 
 .disabled-button:hover {

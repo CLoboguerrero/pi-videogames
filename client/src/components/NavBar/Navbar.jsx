@@ -10,7 +10,7 @@ function NavBar() {
             <div className='nav-links'>
                 <img id='app-logo' src={Logo} alt=''/>
                 <Link to = '/home'>Home</Link>
-                <Link to = '/form'>Custom Games</Link>
+                <Link to = '/form'>Create Videogame</Link>
             </div>
             <Search/>
         </nav>
