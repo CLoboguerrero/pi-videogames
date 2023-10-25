@@ -26,8 +26,6 @@ div.game-genres.route2 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* width: 300px; */
-    /* flex-direction: row; */
 }
 
 .route2 .genre-container  {
@@ -36,9 +34,9 @@ div.game-genres.route2 {
     align-items: center;
 }
 
-/* .route2 .genre-icon {
-    width: 40px;
-} */
+.route2 .genre-icon {
+    width: 50%;
+}
 
 .route2 .genre-name {
     margin-left: 7.5px;

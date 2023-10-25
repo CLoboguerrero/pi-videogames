@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGameDetails, clearDetails } from '../../redux/actions';
 import Loading from '../Loading/Loading';
 import Genres from '../Genres/Genres';
+import BackgroundMain from '../Backgrounds/BackgroundMain';
 
 function Detail () {
     const { id } = useParams();
@@ -13,7 +14,7 @@ function Detail () {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const gameData = useSelector((state) => state.gameDetails);
-    const { name, image, platforms, description, released, rating, genres } = gameData;
+    const { name, image, platforms, description, released, rating } = gameData;
 
     const fetchData = async () => {
         try {
@@ -39,22 +40,76 @@ function Detail () {
     return (
         <div>
             {
-             loading 
+             gameData.length === 0
              ? <Loading />
              
-             : <div>
-                <img className='detail-img' src={image} alt="videogame-image" />
-                <h1><span style={{ fontWeight: 'bold' }}></span>{name}</h1>
-                <h2><span style={{ fontWeight: 'bold' }}>Available on: </span>{platforms && platforms.length > 0 ? platforms.join(' || ') : 'N/A'}</h2>
+             : <div className='details-container'>
+
+                {/* <div className='game-top-container'>
+                    <div className='game-image-container'> 
+                        <img className='detail-img' src={image} alt="videogame-image" />
+                    </div>
+
+                    <div className='game-specs-container'>
+                        <h1><span style={{ fontWeight: 'bold' }}></span>{name}</h1>
+                        <h2><span style={{ fontWeight: 'bold' }}>Available on: </span><br />{platforms && platforms.length > 0 ? platforms.join(' || ') : 'N/A'}</h2>
+                        <h2><span style={{ fontWeight: 'bold' }}>Released: </span><br />{released}</h2>
+                        <h2><span style={{ fontWeight: 'bold' }}>Rating: </span>{rating}</h2>
+                        <Genres />
+                    </div>
+                </div>
+
                 <div 
                 className='detail-description' dangerouslySetInnerHTML={{ __html: description }}>
+                </div> */}
+
+                <div className='top-content'>
+                    <div className='game-image-container'> 
+                        <img className='detail-img' src={image} alt="videogame-image" />
+                    </div>
+
+                    <h1><span style={{ fontWeight: 'bold' }}></span>{name}</h1>
                 </div>
-                <h2><span style={{ fontWeight: 'bold' }}>Released: </span>{released}</h2>
-                <h2><span style={{ fontWeight: 'bold' }}>Rating: </span>{rating}</h2>
-                <Genres />
-                <button onClick={handleBack}>Go back</button> 
+
+
+                <div className='game-bottom-container'>
+                    <div className='text-details-container'>
+                        <h2><span style={{ fontWeight: 'bold' }}></span>Game Description:</h2>
+                        <div 
+                        className='detail-description' dangerouslySetInnerHTML={{ __html: description }}>
+                        </div>
+                    </div>
+
+                    <div className='game-specs-container'>
+
+                        <h2>Genres: </h2>
+                        <Genres />
+
+                        <h2>Available on: </h2>
+                        <span>{platforms && platforms.length > 0 ? platforms.join(' || ') : 'N/A'}</span>
+
+                        <div className='last-details'>
+                            <div className='released-container'>
+                                <h2>Released:</h2>
+                                <span>{released}</span>
+                            </div>
+
+                            <div className='rating-container'>
+                                <h2>Rating: </h2>
+                                <span className='detail-rating'>{rating}⭐️</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div className='back-button-container'>
+                    <h3 className='detail-back-button'onClick={handleBack}>Go back to games</h3>
+                </div>
+
              </div>
             }
+            <BackgroundMain />
         </div>
     );
 }
