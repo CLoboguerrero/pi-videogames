@@ -7,6 +7,7 @@ import validate from './validations';
 import GenresMenu from './GenresMenu';
 import PlatformsMenu from './PlatformsMenu';
 import BackgroundMain from '../Backgrounds/BackgroundMain';
+import Confirmation from './Confirmation';
 
 
 const createVideogame = () => {
@@ -47,9 +48,8 @@ const createVideogame = () => {
         genres: []
     });
 
-
-    const [submitted, setSubmitted] = useState(false);
     const [confirmationMessage, setConfirmationMessage] = useState('');
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
     const handleChange = (event) => {
         setFormData(prevState => ({
@@ -108,7 +108,7 @@ const createVideogame = () => {
             dispatch(postGame(formData));
             dispatch(clearFoundGames());
             dispatch(clearAllGames());
-            setConfirmationMessage('Form Submitted successfully!');
+            setShowConfirmation(true);
 
             setFormData({
                 name: '',
@@ -131,10 +131,12 @@ const createVideogame = () => {
                 rating:'',
                 genres: []
             });
-            setSubmitted(true);
         };
     };
 
+    const handleCloseConfirmation = () => {
+        setShowConfirmation(false);
+    };
 
     return (
         <div className='form-container'>
@@ -221,6 +223,7 @@ const createVideogame = () => {
                     <label htmlFor='image'>*Image: </label>
                     <input
                         id='image'
+                        key={formKey}
                         name='image' 
                         type='file'
                         ref={fileInput}
@@ -235,8 +238,7 @@ const createVideogame = () => {
                     disabled={!isFormValid()}>Submit
                 </button>
             </form>
-            {submitted && <div className='confirmation-message'>{confirmationMessage}</div>}
-
+            {showConfirmation && <Confirmation onClose={handleCloseConfirmation} />}
             <BackgroundMain />
         </div>
     )
