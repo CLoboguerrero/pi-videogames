@@ -55,7 +55,6 @@ const getVideogameByName = async (req, res) => {
         
         return res.status(200).json(videogameResults);     
     } catch (error) {
-        console.error('Error Fetching Data:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }

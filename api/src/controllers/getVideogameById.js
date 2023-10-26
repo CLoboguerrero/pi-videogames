@@ -4,10 +4,6 @@ const { Videogame, Genre } = require('../db');
 const { API_KEY } = process.env;
 const { Op } = require('sequelize');
 
-// const isUUID = (id) => {
-//     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-//     return uuidRegex.test(id);
-// };
 
 const getVideogameById = async (req, res) => {
     const { id } = req.params;
@@ -48,7 +44,6 @@ const getVideogameById = async (req, res) => {
 
             return res.status(200).json(gameData);
         } else {
-            // If the id is not a UUID or is a numeric value, search in the API
             const response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
             const game = response.data;
        
@@ -65,7 +60,6 @@ const getVideogameById = async (req, res) => {
             return res.status(200).json(gameInApi);
         }
     } catch (error) {
-        console.error('Error fetching Data:', error);
         return res.status(500).json({ error: 'Internal Server error' });
     }
 

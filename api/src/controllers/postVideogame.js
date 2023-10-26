@@ -18,8 +18,6 @@ const postVideogame = async (req, res) => {
         return res.status(400).json({ error: 'Missing required fields!' });
     }
 
-    //const transaction = await sequelize.transaction();
-
     try {
         const newGame = await Videogame.create({
             name,
@@ -39,16 +37,15 @@ const postVideogame = async (req, res) => {
                     await newGame.addGenre(genre);
                     addedGenres.push(genre.name)
                 } else {
-                    console.error(`Invalid Genre Name!`);
+                    return res.status(400).json({ error: `Invalid Genre Name: ${genreName}` });
                 }
             } catch (error) {
-                console.error(`Error adding Genre`, error);
+                return res.status(500).json({ error: 'Error adding Genre' });
             };
         };
 
         res.status(201).json({newGame, addedGenres})
     } catch (error) {
-        console.error('Error Crearing Videogame:', error);
         return res.status(500).json({ error: 'Internal Server Error' })
     }
 }

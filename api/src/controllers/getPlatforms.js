@@ -15,10 +15,8 @@ const getPlatforms = async (req, res) => {
 
         const responsePlatforms = platforms.map(platform => platform.name)
 
-        console.log('Platforms imported!');
         return res.status(200).json(responsePlatforms);
     } catch (error) {
-        console.error('Error Fetching Data:', error);
         return res.status(500).json({ error: 'Internal Server Error' })
     }
 }

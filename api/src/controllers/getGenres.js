@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Videogame, Genre } = require('../db');
+const { Genre } = require('../db');
 const { API_KEY } = process.env;
 
 const getGenres = async (req, res) => {
@@ -17,10 +17,8 @@ const getGenres = async (req, res) => {
 
         const responseGenres = genres.map(genre => genre.name)
 
-        console.log('Genres imported!');
         return res.status(200).json(responseGenres);
     } catch (error) {
-        console.error('Error Fetching Data:', error);
         return res.status(500).json({ error: 'Internal Server Error' })
     }
 }
