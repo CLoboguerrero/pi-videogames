@@ -1,6 +1,6 @@
 export const uploadImage = async (file) => {
   const cloudName = 'dqurnosdb';
-  const uploadPreset = 'img_upload'; // Set your Cloudinary upload preset
+  const uploadPreset = 'img_upload';
 
   try {
     const formData = new FormData();

@@ -7,21 +7,11 @@ const Filters = () => {
     
     const dispatch = useDispatch();
     const genresMenu = useSelector(state => state.getGenres);
-    //const allGames = useSelector(state => state.allGames);
-    //const filterGames = useSelector(state => state.filterGames);
-
  
     const [fieldsKey, setFieldsKey] = useState(0);
     const [selectedGenre, setSelectedGenre] = useState('');
     const [activeButton, setActiveButton] = useState(null)
 
-    //const gamesSource = filterGames.some((game) => isNaN(game.id)); 
-    //console.log(gamesSource);
-    
-    // const handleFilter = (event) => {
-    //     dispatch(filterOrigin(event.target.dataset.filter));
-    // }
-    
     const handleButtonClick = (buttonIndex, filter ) => {
         setActiveButton(buttonIndex);
         dispatch(filterOrigin(filter));

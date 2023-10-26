@@ -1,7 +1,4 @@
-.landing-page{
-    /* margin-left: -510px;
-    margin-top: -415px;
-    padding-right: 680px; */
+.landing-page {
     position:absolute;
     left: 0;
     margin-left: 15px;
@@ -12,13 +9,13 @@
     opacity: 0;
 }
 
-.site-logo{
+.site-logo {
     width: 130%;
     animation: fadeIn 1.5s forwards;
     animation-delay: 1s;
 }
 
-.enter-button{
+.enter-button {
     margin-top:15px;
     margin-left: 115px;
     animation: fadeIn 1.5s forwards;

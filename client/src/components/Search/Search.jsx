@@ -29,14 +29,11 @@ function Search () {
           setLoading(true);
     
           try {
-            // Call the async action using await
             await dispatch(getGame(name));
             setName('');
           } catch (error) {
-            console.error('Error fetching game data:', error);
-            // Handle error if needed
+            alert('Error fetching game data:', error);
           } finally {
-            // Clear loading state regardless of success or failure
             setLoading(false);
           }
         }

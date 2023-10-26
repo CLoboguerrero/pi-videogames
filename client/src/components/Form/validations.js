@@ -9,8 +9,8 @@ const validate = (formData) => {
         errors.name = 'Please insert a game name';
     }
 
-    if (formData.description.length < 20 || formData.description.length > 200) {
-        errors.description = 'Description must have between 20 and 200 characters';
+    if (formData.description.length < 20 || formData.description.length > 1000) {
+        errors.description = 'Description must have between 20 and 1000 characters';
     }
 
     if (!formData.description) {
@@ -25,7 +25,7 @@ const validate = (formData) => {
         errors.image = 'Please upload an image';
     } else {
         const allowedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
-        const maxSize = 5 * 1024 * 1024; // 5MB limit
+        const maxSize = 5 * 1024 * 1024;
 
         if (!allowedFormats.includes(formData.image.type)) {
             errors.image = 'Invalid file format. Please upload a JPEG or PNG image.';

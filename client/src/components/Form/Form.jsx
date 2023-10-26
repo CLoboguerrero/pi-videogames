@@ -68,14 +68,12 @@ const createVideogame = () => {
         const file = event.target.files[0];
     
         if (file) {
-            // Check file format
             if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
                 alert('Invalid file format. Please upload a JPEG, JPG or PNG image.');
                 return;
             }
     
-            // Check file size (5MB limit)
-            const maxSize = 5 * 1024 * 1024; // 5MB limit
+            const maxSize = 5 * 1024 * 1024;
             if (file.size > maxSize) {
                 alert('File size exceeds 5MB limit.');
                 return;
@@ -140,7 +138,6 @@ const createVideogame = () => {
 
     return (
         <div className='form-container'>
-            {console.log(formData)}
             <h1>Create new videogame</h1>
             <span>Please fill in the following info:</span>
             <br />

@@ -82,7 +82,7 @@
 .videogame-form span {
     color: #ff0600f7;
     font-size: .8em;
-    font-weight: bold; /* Error message color */
+    font-weight: bold;
 }
 
 .enabled-button,

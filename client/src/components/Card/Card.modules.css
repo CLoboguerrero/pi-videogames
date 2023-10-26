@@ -74,23 +74,3 @@
     background-color: #c0105d;
     color: #fffffff0;
 }
-
-.fav-btn {
-    font-size: 1.5em;
-    border: 1px solid white;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    border-radius: 10px;
-    background-color: #0f0811;
-    margin-top: 12px;
-    margin-bottom: 15px;
-    margin-right: 20px;
-    user-select: none;
-}
-
-.fav-btn:hover {
-    background-color: #141414be;
-    cursor: pointer;
-}

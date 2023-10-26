@@ -22,13 +22,12 @@ function Detail () {
             await dispatch(getGameDetails(id));
             setLoading(false);
         } catch (error) {
-            console.error('Error fetching game details:', error);
+            alert('Error fetching game details:', error);
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        console.log(gameData);
         fetchData();
     },[]);
 
@@ -44,24 +43,6 @@ function Detail () {
              ? <Loading />
              
              : <div className='details-container'>
-
-                {/* <div className='game-top-container'>
-                    <div className='game-image-container'> 
-                        <img className='detail-img' src={image} alt="videogame-image" />
-                    </div>
-
-                    <div className='game-specs-container'>
-                        <h1><span style={{ fontWeight: 'bold' }}></span>{name}</h1>
-                        <h2><span style={{ fontWeight: 'bold' }}>Available on: </span><br />{platforms && platforms.length > 0 ? platforms.join(' || ') : 'N/A'}</h2>
-                        <h2><span style={{ fontWeight: 'bold' }}>Released: </span><br />{released}</h2>
-                        <h2><span style={{ fontWeight: 'bold' }}>Rating: </span>{rating}</h2>
-                        <Genres />
-                    </div>
-                </div>
-
-                <div 
-                className='detail-description' dangerouslySetInnerHTML={{ __html: description }}>
-                </div> */}
 
                 <div className='top-content'>
                     <div className='game-image-container'> 
