@@ -9,6 +9,18 @@ const postVideogame = async (req, res) => {
     }
 
     try {
+
+        const existingGame = await Videogame.findOne({
+            where: {
+                name: name,
+            }
+        });
+
+        if (existingGame) {
+            const errorMessage = 'A game with this name already exists! Please choose a different name'
+            return res.status(400).json({ error: errorMessage, alert:  errorMessage });
+        }
+
         const newGame = await Videogame.create({
             name,
             description,

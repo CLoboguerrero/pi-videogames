@@ -1,6 +1,3 @@
-const axios = require('axios');
-const { Videogame, Genre } = require('../db');
-const { API_KEY } = process.env;
 const { getAllVideogamesHandler } = require('../handlers/getAllVideogamesHandler');
 
 const getAllVideogames = async (req, res) => {
