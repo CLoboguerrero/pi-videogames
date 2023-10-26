@@ -1,62 +1,29 @@
-const axios = require('axios');
-const { Videogame, Genre } = require('../db');
-const { Op } = require('sequelize');
-const { API_KEY } = process.env;
+const { getVideogameByNameFromDb, getVideogameByNameFromAPI } = require('../handlers/getVideogameByNameHandler');
 
 const getVideogameByName = async (req, res) => {
     const { name } = req.query;
+    let totalGames = 15;
+    let gamesInDbModified = [];
 
     try {
-        const gamesInDb = await Videogame.findAll({
-            where: {
-                name: {
-                    [Op.iLike]: `%${name}%`
-                }
-            },
-            include : {
-                model: Genre,
-                attributes: ['name'],
-                through: {
-                    attributes: [],
-                },
-            },
-        });
+        gamesInDbModified = await getVideogameByNameFromDb(name);
+        totalGames -= gamesInDbModified.length;
 
-        const gamesInDbModified = gamesInDb.map((game) => {
-            return {
-                id: game.id,
-                name: game.name,
-                image: game.image,
-                rating: game.rating,
-                genres: game.Genres.map(genre => genre.name),
-            };
-        });
-        
-    
-        let totalGames = 15 - gamesInDbModified.length;
+        if (totalGames > 0) {
+            const gamesInApi = await getVideogameByNameFromAPI(name, totalGames);
+            const videogameResults = [...gamesInDbModified, ...gamesInApi];
 
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}&page_size=${totalGames}`);
+            if (videogameResults.length === 0) {
+                return res.status(404).json({ error: 'No games found with the specified name.' });
+            }
 
-        const gamesInApi = response.data.results.map((game) => {
-            return {
-                id: game.id,
-                name: game.name,
-                image: game.background_image,
-                rating: game.rating,
-                genres: game.genres ? game.genres.map(genre => genre.name) : [],
-            };
-        });
-
-        const videogameResults = [...gamesInDbModified, ...gamesInApi];
-
-        if (videogameResults.length === 0) {
-            return res.status(404).json({ error: 'No games found with the specified name.' });
+            return res.status(200).json(videogameResults);
+        } else {
+            return res.status(200).json(gamesInDbModified);
         }
-        
-        return res.status(200).json(videogameResults);     
     } catch (error) {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
 
-module.exports = { getVideogameByName }
+module.exports = { getVideogameByName };
