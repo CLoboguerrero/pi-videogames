@@ -99,37 +99,44 @@ const createVideogame = () => {
         return !errors.name && !errors.description && !errors.platforms && !errors.image && !errors.date && !errors.rating && !errors. genres && formData.name && formData.description && formData.platforms.length > 0 && formData.image && formData.released && formData.rating && formData.genres.length > 0
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (isFormValid()) {
+            try {
+                const response = await dispatch(postGame(formData));
+                if (response.status === 201) {
+                    setShowConfirmation(true);
 
-            dispatch(postGame(formData));
-            dispatch(clearFoundGames());
-            dispatch(clearAllGames());
-            setShowConfirmation(true);
+                    setFormData({
+                        name: '',
+                        description: '',
+                        platforms: [],
+                        image:'',
+                        released:'',
+                        rating:'',
+                        genres: []
+                    });
+                    setErrors({
+                        name: '',
+                        description: '',
+                        platforms: [],
+                        image:'',
+                        released:'',
+                        rating:'',
+                        genres: []
+                    });
 
-            setFormData({
-                name: '',
-                description: '',
-                platforms: [],
-                image:'',
-                released:'',
-                rating:'',
-                genres: []
-            });
-
-            setFormKey((prevKey) => prevKey + 1);
-
-            setErrors({
-                name: '',
-                description: '',
-                platforms: [],
-                image:'',
-                released:'',
-                rating:'',
-                genres: []
-            });
-        };
+                    dispatch(clearFoundGames());
+                    dispatch(clearAllGames());
+                } else if (response.status === 400) {
+                    alert('A game with this name already exists! Please choose a different name');
+                } else {
+                    alert('Error creating videogame. Please try again later.');
+                }
+            } catch (error) {
+                alert(`A game with name ${formData.name} already exists! Please choose a different name`);
+            }
+        }
     };
 
     const handleCloseConfirmation = () => {
