@@ -101,41 +101,40 @@ const createVideogame = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (isFormValid()) {
-            try {
-                const response = await dispatch(postGame(formData));
-                if (response.status === 201) {
-                    setShowConfirmation(true);
+        let postGameSuccess = false;
 
-                    setFormData({
-                        name: '',
-                        description: '',
-                        platforms: [],
-                        image:'',
-                        released:'',
-                        rating:'',
-                        genres: []
-                    });
-                    setErrors({
-                        name: '',
-                        description: '',
-                        platforms: [],
-                        image:'',
-                        released:'',
-                        rating:'',
-                        genres: []
-                    });
+        try {
+            await dispatch(postGame(formData));
+            postGameSuccess = true;
+        } catch (error) {
+            alert(`A Videogame with the name ${formData.name} , already exists! Please choose a different name`);
+        }
+        
+        if (postGameSuccess) {
+            dispatch(clearFoundGames());
+            dispatch(clearAllGames());
+            setShowConfirmation(true)
 
-                    dispatch(clearFoundGames());
-                    dispatch(clearAllGames());
-                } else if (response.status === 400) {
-                    alert('A game with this name already exists! Please choose a different name');
-                } else {
-                    alert('Error creating videogame. Please try again later.');
-                }
-            } catch (error) {
-                alert(`A game with name ${formData.name} already exists! Please choose a different name`);
-            }
+            setFormData({
+                name: '',
+                description: '',
+                platforms: [],
+                image: '',
+                released: '',
+                rating: '',
+                genres: []
+            });
+            setErrors({
+                name: '',
+                description: '',
+                platforms: [],
+                image: '',
+                released: '',
+                rating: '',
+                genres: []
+            });
+
+            setFormKey(formKey + 1);
         }
     };
 

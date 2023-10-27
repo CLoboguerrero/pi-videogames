@@ -74,12 +74,15 @@ export const getPlatforms = () => {
 };
 
 export const postGame = (formData) => {
-    return async (dispatch) => {
+    return async () => {
         try {
-            const { data } = await axios.post(`${endpoint}/videogames`, formData);
+            const response = await axios.post(`${endpoint}/videogames`, formData);
+            if (response.status != 201) {
+                throw new Error ('Invalid Videogame Name!')
+            }
         } catch (error) {
-            alert('An error ocurred while posting a new game!', error);
-        };
+            throw error;
+        }
     };
 };
 
